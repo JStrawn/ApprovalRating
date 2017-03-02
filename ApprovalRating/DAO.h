@@ -11,6 +11,7 @@
 @interface DAO : NSObject
 
 @property (strong, nonatomic) NSString* userSearchString;
+@property (strong, nonatomic) NSMutableArray* newsStories;
 
 @property int positiveSentimentValue;
 @property int negativeSentimentValue;

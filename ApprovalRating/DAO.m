@@ -8,6 +8,7 @@
 
 #import "DAO.h"
 #import "AppDelegate.h"
+#import "NewsStory.h"
 
 @interface DAO ()
 
@@ -34,7 +35,7 @@
     [urlString appendString:fixedUserSearchString];
     [urlString appendString:@"person.positive%3A%22"];
     [urlString appendString:noSpacesUserSearchString];
-    [urlString appendString:@"%22"];
+    [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
     
     [self dataRequestForSentiments: urlString];
     NSLog(@"%d", self.numberOfStories);
@@ -77,7 +78,17 @@
         NSLog(@"Dictionary: %@", dictionary);
         
         //for in loop
-        
+        NSDictionary *posts = [dictionary objectForKey:@"posts"];
+        //NSDictionary *thread = [posts objectForKey:@"thread"];
+        for (NSDictionary *currentThread in posts) {
+            NSString *title = [currentThread objectForKey:@"title"];
+            NSString *url = [currentThread objectForKey:@"url"];
+            NSString *imageURL = [currentThread objectForKey:@"main_image"];
+            
+            self.newsStories = [[NSMutableArray alloc]init];
+            NewsStory *currentStory = [[NewsStory alloc]initWithTitle:title andURL:url andImageURL:imageURL];
+            [self.newsStories addObject:currentStory];
+        }
         
     }];
     [dataTask resume];

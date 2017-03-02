@@ -15,6 +15,7 @@
 		C333DB3C1E6895510065A82E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C333DB3A1E6895510065A82E /* ViewController.m */; };
 		C333DB3D1E6895510065A82E /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C333DB3B1E6895510065A82E /* ViewController.xib */; };
 		C333DB401E689C870065A82E /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = C333DB3F1E689C870065A82E /* DAO.m */; };
+		C333DB431E68CA4B0065A82E /* NewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = C333DB421E68CA4B0065A82E /* NewsStory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		C333DB3B1E6895510065A82E /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = ../ViewController.xib; sourceTree = "<group>"; };
 		C333DB3E1E689C870065A82E /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
 		C333DB3F1E689C870065A82E /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
+		C333DB411E68CA4B0065A82E /* NewsStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsStory.h; sourceTree = "<group>"; };
+		C333DB421E68CA4B0065A82E /* NewsStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsStory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,8 @@
 				C333DB3A1E6895510065A82E /* ViewController.m */,
 				61B31EE61E689DA90068C7D3 /* NewsEntry.h */,
 				61B31EE71E689DA90068C7D3 /* NewsEntry.m */,
+				C333DB411E68CA4B0065A82E /* NewsStory.h */,
+				C333DB421E68CA4B0065A82E /* NewsStory.m */,
 				C333DB3B1E6895510065A82E /* ViewController.xib */,
 				C333DB2E1E6893CB0065A82E /* Assets.xcassets */,
 				C333DB301E6893CB0065A82E /* LaunchScreen.storyboard */,
@@ -165,6 +170,7 @@
 				C333DB3C1E6895510065A82E /* ViewController.m in Sources */,
 				61B31EE81E689DA90068C7D3 /* NewsEntry.m in Sources */,
 				C333DB271E6893CA0065A82E /* AppDelegate.m in Sources */,
+				C333DB431E68CA4B0065A82E /* NewsStory.m in Sources */,
 				C333DB241E6893CA0065A82E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
