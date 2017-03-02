@@ -19,7 +19,8 @@
 @property int numberOfStories;
 
 - (void)getSentimentValues;
-- (void)dataRequest:(NSString*)urlString;
+- (int) dataRequestForSentiments:(NSString*)urlString;
+- (void) dataRequestForNewsStories:(NSString*)urlString;
 
 
 

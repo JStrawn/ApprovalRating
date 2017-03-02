@@ -60,7 +60,7 @@
     }];
     [dataTask resume];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"apiCallComplete" object:self];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"apiCallComplete" object:self];
 
     return self.numberOfStories;
 
