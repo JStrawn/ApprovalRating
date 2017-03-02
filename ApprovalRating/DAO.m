@@ -87,6 +87,9 @@
             
             self.newsStories = [[NSMutableArray alloc]init];
             NewsStory *currentStory = [[NewsStory alloc]initWithTitle:title andURL:url andImageURL:imageURL];
+            NSString *performanceScore = [currentThread objectForKey:@"performance_score"];
+            double performanceDouble = performanceScore.doubleValue;
+            currentStory.score = performanceDouble;
             [self.newsStories addObject:currentStory];
         }
         
