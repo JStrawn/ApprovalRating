@@ -28,10 +28,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.dao = [[DAO alloc]init];
-    [self.dao getSentimentValues];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(apiCallComplete:) name:@"notificationName" object:nil];
-
     
+    [self.dao getPositiveSentimentValues];
+    [self.dao getNegativeSentimentValues];
+    [self.dao getNeutralSentimentValues];
+    [self.dao getNewsStories];
+    
+    NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
+
 }
 
 - (void)didReceiveMemoryWarning {

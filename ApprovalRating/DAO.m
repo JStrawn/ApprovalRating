@@ -17,35 +17,91 @@
 @implementation DAO: NSObject
 
 
-
-- (void)getSentimentValues {
-    
-    NSMutableString *urlString = [[NSMutableString alloc]init];
-    NSString *myAPIToken = @"bdfe913e-d37f-4f75-83a5-3c41b7443483";
+- (id)init {
+    self.myAPIToken = @"bdfe913e-d37f-4f75-83a5-3c41b7443483";
     
 #pragma mark This is a dummy request, comment out line 26 when using user generated search
     self.userSearchString = @"Bernie Sanders";
-    NSString *noSpacesUserSearchString = [self.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    NSString *fixedUserSearchString = [noSpacesUserSearchString stringByAppendingString:@"%20"];
+    self.noSpacesUserSearchString = [self.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    self.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
+
+    return self;
+}
+
+- (void)getPositiveSentimentValues {
+    
+    NSMutableString *urlString = [[NSMutableString alloc]init];
+
+    //create the url string
+    [urlString appendString:@"http://webhose.io/search?token="];
+    [urlString appendString:self.myAPIToken];
+    [urlString appendString:@"&format=json&q="];
+    [urlString appendString:self.fixedUserSearchString];
+    [urlString appendString:@"person.positive%3A%22"];
+    [urlString appendString:self.noSpacesUserSearchString];
+    [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
+    
+    [self dataRequestForSentiments:urlString sentType:POSITIVE];
+        
+}
+
+- (void)getNegativeSentimentValues {
+    
+    NSMutableString *urlString = [[NSMutableString alloc]init];
+
     
     //create the url string
     [urlString appendString:@"http://webhose.io/search?token="];
-    [urlString appendString:myAPIToken];
+    [urlString appendString:self.myAPIToken];
     [urlString appendString:@"&format=json&q="];
-    [urlString appendString:fixedUserSearchString];
-    [urlString appendString:@"person.positive%3A%22"];
-    [urlString appendString:noSpacesUserSearchString];
+    [urlString appendString:self.fixedUserSearchString];
+    [urlString appendString:@"person.negative%3A%22"];
+    [urlString appendString:self.noSpacesUserSearchString];
     [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
     
-    [self dataRequestForSentiments: urlString];
-    NSLog(@"%d", self.numberOfStories);
+    [self dataRequestForSentiments:urlString sentType:NEGATIVE];
     
+}
+
+- (void)getNeutralSentimentValues {
+    
+    NSMutableString *urlString = [[NSMutableString alloc]init];
+    
+    //create the url string
+    [urlString appendString:@"http://webhose.io/search?token="];
+    [urlString appendString:self.myAPIToken];
+    [urlString appendString:@"&format=json&q="];
+    [urlString appendString:self.fixedUserSearchString];
+    [urlString appendString:@"person.neutral%3A%22"];
+    [urlString appendString:self.noSpacesUserSearchString];
+    [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
+    
+    [self dataRequestForSentiments:urlString sentType:NEUTRAL];
+    
+}
+
+-(void)getNewsStories {
+    
+    NSMutableString *urlString = [[NSMutableString alloc]init];
+    
+    //create the url string
+    [urlString appendString:@"http://webhose.io/search?token="];
+    [urlString appendString:self.myAPIToken];
+    [urlString appendString:@"&format=json&q="];
+    [urlString appendString:self.fixedUserSearchString];
+    [urlString appendString:@"person%3A%22"];
+    [urlString appendString:self.noSpacesUserSearchString];
+    [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
+
     [self dataRequestForNewsStories:urlString];
     
 }
 
-- (int) dataRequestForSentiments:(NSString*)urlString {
+- (void) dataRequestForSentiments:(NSString*)urlString sentType:(int)sentimentType {
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
 
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -56,17 +112,23 @@
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSNumber *numOfStories = [dictionary objectForKey:@"totalResults"];
         self.numberOfStories = [numOfStories doubleValue];
-        NSLog(@"%d", self.numberOfStories);
+        
+        if (sentimentType == 0) {
+            self.positiveSentimentValue = self.numberOfStories;
+        } else if (sentimentType == 1) {
+            self.negativeSentimentValue = self.numberOfStories;
+        } else if (sentimentType == 2) {
+            self.neutralSentimentValue = self.numberOfStories;
+        }
     }];
     [dataTask resume];
-    
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"apiCallComplete" object:self];
-
-    return self.numberOfStories;
-
+    });
 }
 
 - (void) dataRequestForNewsStories:(NSString*)urlString {
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -75,7 +137,7 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         //convert data into dictionary
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSLog(@"Dictionary: %@", dictionary);
+        //NSLog(@"Dictionary: %@", dictionary);
         
         //for in loop
         NSDictionary *posts = [dictionary objectForKey:@"posts"];
@@ -95,9 +157,7 @@
         
     }];
     [dataTask resume];
-    
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"apiCallComplete" object:self];
-
+    });
     
 }
 
