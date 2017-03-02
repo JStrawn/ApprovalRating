@@ -6,10 +6,12 @@
 //  Copyright © 2017 JStrawn. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+#import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface ViewController : UIViewController
 
 
-@end
 
+@end
