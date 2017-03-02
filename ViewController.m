@@ -51,7 +51,6 @@
     
     
     self.dao = [[DAO alloc]init];
-    [self.dao getSentimentValues];
     
     self.view.backgroundColor = [UIColor redColor];
     
@@ -69,6 +68,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)apiCallComplete:(NSNotification*)notification
+{
+ //refresh the tableview and other stuff - this is called every time an api call completes
 }
 
 /*
