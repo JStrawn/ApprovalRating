@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DAO.h"
 
 @interface ViewController ()
 
@@ -26,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.dao = [[DAO alloc]init];
+    [self.dao getSentimentValues];
+    
 }
 
 - (void)didReceiveMemoryWarning {

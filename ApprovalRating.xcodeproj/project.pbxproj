@@ -13,6 +13,7 @@
 		C333DB321E6893CB0065A82E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C333DB301E6893CB0065A82E /* LaunchScreen.storyboard */; };
 		C333DB3C1E6895510065A82E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C333DB3A1E6895510065A82E /* ViewController.m */; };
 		C333DB3D1E6895510065A82E /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C333DB3B1E6895510065A82E /* ViewController.xib */; };
+		C333DB401E689C870065A82E /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = C333DB3F1E689C870065A82E /* DAO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		C333DB391E6895510065A82E /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
 		C333DB3A1E6895510065A82E /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
 		C333DB3B1E6895510065A82E /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = ../ViewController.xib; sourceTree = "<group>"; };
+		C333DB3E1E689C870065A82E /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
+		C333DB3F1E689C870065A82E /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 			children = (
 				C333DB251E6893CA0065A82E /* AppDelegate.h */,
 				C333DB261E6893CA0065A82E /* AppDelegate.m */,
+				C333DB3E1E689C870065A82E /* DAO.h */,
+				C333DB3F1E689C870065A82E /* DAO.m */,
 				C333DB391E6895510065A82E /* ViewController.h */,
 				C333DB3A1E6895510065A82E /* ViewController.m */,
 				C333DB3B1E6895510065A82E /* ViewController.xib */,
@@ -151,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C333DB401E689C870065A82E /* DAO.m in Sources */,
 				C333DB3C1E6895510065A82E /* ViewController.m in Sources */,
 				C333DB271E6893CA0065A82E /* AppDelegate.m in Sources */,
 				C333DB241E6893CA0065A82E /* main.m in Sources */,
