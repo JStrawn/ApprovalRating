@@ -1,5 +1,5 @@
 //
-//  NewsEntry.h
+//  ResultController.h
 //  ApprovalRating
 //
 //  Created by Louis Harris on 3/2/17.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-@interface NewsEntry : UIViewController<WKNavigationDelegate>
+@interface ResultController : UIViewController<WKNavigationDelegate>
 
 //(might not be needed) @property (strong, nonatomic)NSString* newsTitle;
 @property (retain, nonatomic)NSURL* newsArticleURL;
@@ -17,5 +17,7 @@
 @property (strong, nonatomic)WKWebView* webView;
 @property (strong, nonatomic)NSMutableDictionary* entries;
 
+// UI assets
+// 
 
 @end

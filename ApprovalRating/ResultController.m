@@ -1,18 +1,18 @@
 //
-//  NewsEntry.m
+//  ResultController.m
 //  ApprovalRating
 //
 //  Created by Louis Harris on 3/2/17.
 //  Copyright © 2017 JStrawn. All rights reserved.
 //
 
-#import "NewsEntry.h"
+#import "ResultController.h"
 
-@interface NewsEntry()
+@interface ResultController()
 
 @end
 
-@implementation NewsEntry
+@implementation ResultController
 
 -(void)viewDidLoad
 {
