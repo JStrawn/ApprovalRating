@@ -28,7 +28,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //sort through dictionary score get the hightest
+    //sort through dictionary entries get the hightest score from dictionary
+    
     //take the second highest or another score that's equal
 }
 

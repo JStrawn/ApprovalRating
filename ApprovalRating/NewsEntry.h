@@ -13,8 +13,9 @@
 
 //(might not be needed) @property (strong, nonatomic)NSString* newsTitle;
 @property (retain, nonatomic)NSURL* newsArticleURL;
+@property (retain, nonatomic)NSString* imageURL;
 @property (strong, nonatomic)WKWebView* webView;
-@property (strong, nonatomic)NSMutableDictionary* score;
+@property (strong, nonatomic)NSMutableDictionary* entries;
 
 
 @end
