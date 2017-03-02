@@ -37,10 +37,14 @@
     [urlString appendString:@"%22"];
     
     [self dataRequestForSentiments: urlString];
-        
+    NSLog(@"%d", self.numberOfStories);
+    
+    [self dataRequestForNewsStories:urlString];
+    
 }
 
-- (void) dataRequestForSentiments:(NSString*)urlString {
+- (int) dataRequestForSentiments:(NSString*)urlString {
+
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -50,11 +54,11 @@
         //convert data into array
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSNumber *numOfStories = [dictionary objectForKey:@"totalResults"];
-        double  numberOfStories = [numOfStories doubleValue];
-        NSLog(@"%f", numberOfStories);
+        self.numberOfStories = [numOfStories doubleValue];
+        NSLog(@"%d", self.numberOfStories);
     }];
     [dataTask resume];
-    
+    return self.numberOfStories;
 }
 
 - (void) dataRequestForNewsStories:(NSString*)urlString {
@@ -66,7 +70,7 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         //convert data into dictionary
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSLog(@"Dictionary: %@", dictionary);
+        //NSLog(@"Dictionary: %@", dictionary);
         
     }];
     [dataTask resume];
