@@ -12,7 +12,10 @@
 
 @property (strong, nonatomic) NSString* userSearchString;
 
-@property positiveSentimentValue
+@property int positiveSentimentValue;
+@property int negativeSentimentValue;
+@property int neutralSentimentValue;
+@property int numberOfStories;
 
 - (void)getSentimentValues;
 - (void)dataRequest:(NSString*)urlString;
