@@ -29,12 +29,19 @@
     // Do any additional setup after loading the view from its nib.
     self.dao = [[DAO alloc]init];
     [self.dao getSentimentValues];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(apiCallComplete:) name:@"notificationName" object:nil];
+
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)apiCallComplete:(NSNotification*)notification
+{
+ //refresh the tableview and other stuff - this is called every time an api call completes
 }
 
 /*

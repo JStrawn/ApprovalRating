@@ -58,7 +58,11 @@
         NSLog(@"%d", self.numberOfStories);
     }];
     [dataTask resume];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"apiCallComplete" object:self];
+
     return self.numberOfStories;
+
 }
 
 - (void) dataRequestForNewsStories:(NSString*)urlString {
@@ -70,10 +74,13 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         //convert data into dictionary
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        //NSLog(@"Dictionary: %@", dictionary);
+        NSLog(@"Dictionary: %@", dictionary);
         
     }];
     [dataTask resume];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"apiCallComplete" object:self];
+
     
 }
 
