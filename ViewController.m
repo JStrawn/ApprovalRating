@@ -11,6 +11,15 @@
 
 @interface ViewController ()
 
+@property double postiveScore;
+@property double negativeScore;
+@property double neutralScore;
+@property double totalScore;
+
+@property double postivePercentage;
+@property double negativePercentage;
+@property double neutralPercentage;
+
 @end
 
 @implementation ViewController
