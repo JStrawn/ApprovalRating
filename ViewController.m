@@ -68,6 +68,10 @@
     [self.view.layer insertSublayer:gradient atIndex:0];
     
     
+    
+    
+    NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
+
 }
 
 - (void)didReceiveMemoryWarning {
