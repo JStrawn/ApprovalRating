@@ -150,7 +150,7 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         //convert data into dictionary
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        //NSLog(@"Dictionary: %@", dictionary);
+        NSLog(@"Dictionary: %@", dictionary);
         
         //for in loop
         NSDictionary *posts = [dictionary objectForKey:@"posts"];
