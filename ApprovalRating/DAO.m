@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "NewsStory.h"
 
-@interface DAO ()
+@interface DAO () <NSURLSessionDownloadDelegate>
 
 @end
 
@@ -25,6 +25,14 @@
     self.noSpacesUserSearchString = [self.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     self.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
 
+    return self;
+}
+
+- (instancetype)initWithDelegate:(id<NSURLSessionDownloadDelegate>)delegate {
+    self = [super init];
+    if (self) {
+        self.delegate = delegate;
+    }
     return self;
 }
 
@@ -99,7 +107,6 @@
 
 - (void) dataRequestForSentiments:(NSString*)urlString sentType:(int)sentimentType {
     
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
 
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -108,8 +115,10 @@
     NSMutableURLRequest *request =[[NSMutableURLRequest alloc]initWithURL:url];
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+
         //convert data into array
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         NSNumber *numOfStories = [dictionary objectForKey:@"totalResults"];
         self.numberOfStories = [numOfStories doubleValue];
         
@@ -120,9 +129,13 @@
         } else if (sentimentType == 2) {
             self.neutralSentimentValue = self.numberOfStories;
         }
+            
+        [self.delegate didRetreiveInfo:data];
+
+        });
+
     }];
     [dataTask resume];
-    });
 }
 
 - (void) dataRequestForNewsStories:(NSString*)urlString {

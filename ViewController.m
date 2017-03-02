@@ -34,6 +34,8 @@
     [self.dao getNeutralSentimentValues];
     [self.dao getNewsStories];
     
+    
+    
     NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
 
 }
