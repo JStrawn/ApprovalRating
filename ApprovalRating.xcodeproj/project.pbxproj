@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61B31EE81E689DA90068C7D3 /* NewsEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B31EE71E689DA90068C7D3 /* NewsEntry.m */; };
 		C333DB241E6893CA0065A82E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C333DB231E6893CA0065A82E /* main.m */; };
 		C333DB271E6893CA0065A82E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C333DB261E6893CA0065A82E /* AppDelegate.m */; };
 		C333DB2F1E6893CB0065A82E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C333DB2E1E6893CB0065A82E /* Assets.xcassets */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61B31EE61E689DA90068C7D3 /* NewsEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsEntry.h; sourceTree = "<group>"; };
+		61B31EE71E689DA90068C7D3 /* NewsEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsEntry.m; sourceTree = "<group>"; };
 		C333DB1F1E6893CA0065A82E /* ApprovalRating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApprovalRating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C333DB231E6893CA0065A82E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C333DB251E6893CA0065A82E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 				C333DB3F1E689C870065A82E /* DAO.m */,
 				C333DB391E6895510065A82E /* ViewController.h */,
 				C333DB3A1E6895510065A82E /* ViewController.m */,
+				61B31EE61E689DA90068C7D3 /* NewsEntry.h */,
+				61B31EE71E689DA90068C7D3 /* NewsEntry.m */,
 				C333DB3B1E6895510065A82E /* ViewController.xib */,
 				C333DB2E1E6893CB0065A82E /* Assets.xcassets */,
 				C333DB301E6893CB0065A82E /* LaunchScreen.storyboard */,
@@ -158,6 +163,7 @@
 			files = (
 				C333DB401E689C870065A82E /* DAO.m in Sources */,
 				C333DB3C1E6895510065A82E /* ViewController.m in Sources */,
+				61B31EE81E689DA90068C7D3 /* NewsEntry.m in Sources */,
 				C333DB271E6893CA0065A82E /* AppDelegate.m in Sources */,
 				C333DB241E6893CA0065A82E /* main.m in Sources */,
 			);
@@ -310,6 +316,7 @@
 				C333DB381E6893CB0065A82E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
