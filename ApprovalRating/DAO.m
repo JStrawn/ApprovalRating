@@ -76,6 +76,8 @@
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSLog(@"Dictionary: %@", dictionary);
         
+        //for in loop
+        
     }];
     [dataTask resume];
     
