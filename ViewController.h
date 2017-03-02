@@ -9,9 +9,11 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "DAO.h"
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic)DAO *dao;
 
 
 @end
