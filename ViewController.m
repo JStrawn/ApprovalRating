@@ -11,6 +11,11 @@
 
 @interface ViewController () <UITextFieldDelegate> {
     CGRect textFrame;
+    
+    bool posCompletion;
+    bool neuCompletion;
+    bool negCompletion;
+    bool newsDownload;
 }
 
 @end
@@ -104,6 +109,8 @@
 
 -(void)receivedNotification:(NSNotification*)notification
 {
+    
+    
     if ([[notification name] isEqualToString:@"Download Finished"]) {
         
         self.resultViewController = [[ResultController alloc]init];
@@ -123,6 +130,12 @@
          animated:YES];
         //        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
         }
+    }
+}
+
+-(void)checkDLCompletion {
+    if (negCompletion && neuCompletion && posCompletion && newsDownload) {
+        //execute results VD
     }
 }
 
