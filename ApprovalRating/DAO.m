@@ -120,16 +120,22 @@
         
         if (sentimentType == 0) {
             self.positiveSentimentValue = self.numberOfStories;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Positive Finished" object:self];
+
         } else if (sentimentType == 1) {
             self.negativeSentimentValue = self.numberOfStories;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Negative Finished" object:self];
+
         } else if (sentimentType == 2) {
             self.neutralSentimentValue = self.numberOfStories;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Neutral Finished" object:self];
+
         }
             
         //[self.delegate didRetreiveInfo:data];
         // NSNotification broadcast here
         //how to bring this back to the main queue
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Download Finished" object:self];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:@"Download Finished" object:self];
 
             
         //});
