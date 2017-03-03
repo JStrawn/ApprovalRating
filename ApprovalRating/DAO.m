@@ -18,6 +18,16 @@
 @implementation DAO: NSObject
 
 
++ (id)sharedManager {
+    static DAO *sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
+}
+
+
 - (id)init {
     self.myAPIToken = @"bdfe913e-d37f-4f75-83a5-3c41b7443483";
     
