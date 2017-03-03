@@ -116,6 +116,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     self.firstTimeCalled = YES;
     //[self triggerLoadingView:self];
 }
