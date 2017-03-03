@@ -20,8 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     //Initializing daoData
     self.sharedManager = [DAO sharedManager];
+    self.
     
     ///////////////////////////////////////////////////////////////////////////
     //
@@ -56,14 +60,14 @@
     
     double totalresults = self.sharedManager.positiveSentimentValue + self.sharedManager.neutralSentimentValue + self.sharedManager.negativeSentimentValue;
     
-    double calculatedPercentage = self.sharedManager.positiveSentimentValue/totalresults;
+    double calculatedPercentage = self.sharedManager.positiveSentimentValue/totalresults * 100;
     
-    self.scoreLabel.text = [NSString stringWithFormat:@"%f",calculatedPercentage];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%.f%%",calculatedPercentage];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.sharedManager.newsStories.count;
+    return [self.sharedManager.newsStories count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,7 +78,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = @"This is a test";
+    NewsStory *story = [[NewsStory alloc]init];
+    story = self.sharedManager.newsStories[indexPath.row];
+    
+    cell.textLabel.text = story.newsTitle;
+    
     return cell;
 }
 

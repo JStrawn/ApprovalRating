@@ -44,7 +44,7 @@
     self.nameInputTextField.delegate = self;
 #pragma mark PLACEHOLDER, comment out for real searching
     self.nameInputTextField.text = @"Brad Pitt";
-    //self.nameInputTextField.text = self.dao.userSearchString;
+    // self.nameInputTextField.text = self.sharedManager.userSearchString;
     
     self.navigationItem.leftBarButtonItem= infoButton;
     
