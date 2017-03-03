@@ -104,26 +104,8 @@
 
 -(void)receivedNotification:(NSNotification*)notification
 {
-    if ([[notification name] isEqualToString:@"Download Finished"]) {
-        
-//        self.resultViewController = [[ResultController alloc]init];
-//        if (self.firstTimeCalled == YES) {
-//            self.timesCalled = 1;
-//            self.firstTimeCalled = NO;
-//        } else {
-//            self.timesCalled = self.timesCalled + 1;
-//        }
-//        
-//        if (self.timesCalled == 3) {
-        
-        //Guys: You can hide/unhide the customView using nstimer!!!!!!!!!!!!!!!!!!!//
-        self.resultViewController = [[ResultController alloc]init];
-
-        [self.navigationController
-         pushViewController:self.resultViewController
-         animated:YES];
-        //        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
-        //}
+    if ([[notification name] isEqualToString:@"Positive Finished"]) {
+        self.pos
     }
 }
 
