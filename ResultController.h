@@ -10,4 +10,18 @@
 
 @interface ResultController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIView *resultContainerView;
+@property (weak, nonatomic) IBOutlet UIView *scoreBackgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *searchTermLabel;
+
+// sentiment score labels
+@property (weak, nonatomic) IBOutlet UILabel *posScoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *neuScoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *negScoreLabel;
+@property (weak, nonatomic) IBOutlet UIButton *dismissButton;
+
+// testing
+- (IBAction)dismissButtonPrsd:(id)sender;
+
 @end

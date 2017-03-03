@@ -27,7 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     ///////////////////////////////////////////////////////////////////////////
+    //
     // Nav Bar & UI Setup
+    //
     ///////////////////////////////////////////////////////////////////////////
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"aprvd_logo.png"]] ;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -48,15 +50,6 @@
     self.submitButton.backgroundColor = UIColorFromRGB(0x6da7d3);
     self.submitButton.layer.cornerRadius = 5;
     
-    
-    self.dao = [[DAO alloc]init];
-    
-    [self.dao getPositiveSentimentValues];
-    [self.dao getNegativeSentimentValues];
-    [self.dao getNeutralSentimentValues];
-    [self.dao getNewsStories];
-    
-    
     // Gradient view
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
@@ -65,25 +58,24 @@
     
     [self.view.layer insertSublayer:gradient atIndex:0];
     
+    ///////////////////////////////////////////////////////////////////////////
+    //
+    // DAO Init & Testing
+    //
+    ///////////////////////////////////////////////////////////////////////////
+    self.dao = [[DAO alloc]init];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receivedNotification:)
-                                                 name:@"Address Found"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receivedNotification:)
-                                                 name:@"Not Found"
-                                               object:nil];
+    // testing
+    [self.dao getPositiveSentimentValues];
+    [self.dao getNegativeSentimentValues];
+    [self.dao getNeutralSentimentValues];
+    [self.dao getNewsStories];
     
+    NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)receivedNotification:(NSNotification*)notification
+-(void)apiCallComplete:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:@"Address Found"]) {
         NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);

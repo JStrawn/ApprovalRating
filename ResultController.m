@@ -16,7 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    ///////////////////////////////////////////////////////////////////////////
+    //
+    // UI Related
+    //
+    ///////////////////////////////////////////////////////////////////////////
+    self.scoreBackgroundView.layer.cornerRadius = 35;
+    self.scoreBackgroundView.layer.masksToBounds = true;
+    
+    UIImage *exitIcon = [UIImage imageNamed:@"exit.png"];
+    [self.dismissButton setImage:exitIcon forState:UIControlStateNormal];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,4 +45,7 @@
 }
 */
 
+- (IBAction)dismissButtonPrsd:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
