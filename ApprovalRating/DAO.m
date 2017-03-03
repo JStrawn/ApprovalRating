@@ -120,7 +120,6 @@
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
 
         //convert data into array
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
@@ -130,20 +129,29 @@
         
         if (sentimentType == 0) {
             self.positiveSentimentValue = self.numberOfStories;
+            //use dispatch async to get these notifications on the MAIN thread because itherwise they will be pahhening asynchronusly
+            dispatch_async(dispatch_get_main_queue(),^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Positive Finished" object:self];
             NSLog(@" ############# positive sentiment score: %d", self.positiveSentimentValue);
+            });
+
 
         } else if (sentimentType == 1) {
+            dispatch_async(dispatch_get_main_queue(),^{
             self.negativeSentimentValue = self.numberOfStories;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Negative Finished" object:self];
+            NSLog(@" ############# negative sentiment score: %d", self.negativeSentimentValue);
+            });
+
 
         } else if (sentimentType == 2) {
             self.neutralSentimentValue = self.numberOfStories;
+            dispatch_async(dispatch_get_main_queue(),^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Neutral Finished" object:self];
-
+            NSLog(@" ############# neutral sentiment score: %d", self.neutralSentimentValue);
+            });
         }
         
-        });
     }];
     [dataTask resume];
 }
@@ -165,28 +173,34 @@
         
         self.newsStories = [[NSMutableArray alloc]init];
         
-        NSDictionary *posts = [dictionary objectForKey:@"posts"];
-        //NSDictionary *thread = [posts objectForKey:@"thread"];
-        for (NSDictionary *currentThread in posts) {
-            NSString *title = [currentThread objectForKey:@"title"];
-            NSString *url = [currentThread objectForKey:@"url"];
-            NSString *imageURL = [currentThread objectForKey:@"main_image"];
-            NSString *source = [currentThread objectForKey:@"site"];
+        //NSDictionary *thread = [[NSDictionary alloc]init];
+        
+        NSArray *posts = [dictionary objectForKey:@"posts"];
+        //thread = [posts objectForKey:@"thread"];
+
+        for (NSDictionary *currentStory in posts) {
+            NSDictionary *threadDictionary = [currentStory objectForKey:@"thread"];
+            NSString *site = [threadDictionary objectForKey:@"site"];
+            NSString *imageURL = [threadDictionary objectForKey:@"main_image"];
+            NSString *title = [threadDictionary objectForKey:@"title"];
+            NSString *url = [threadDictionary objectForKey:@"url"];
             
-            NewsStory *currentStory = [[NewsStory alloc]initWithTitle:title andURL:url andImageURL:imageURL andSource:source];
-            NSString *performanceScore = [currentThread objectForKey:@"performance_score"];
+            NewsStory *currentStory = [[NewsStory alloc]initWithTitle:title andURL:url andImageURL:imageURL andSource:site];
+            
+            NSString *performanceScore = [threadDictionary objectForKey:@"performance_score"];
             double performanceDouble = performanceScore.doubleValue;
             currentStory.score = performanceDouble;
             
             //ResultController *rc = [[ResultController alloc]init];
             
-            
             [self.newsStories addObject:currentStory];
             
 
         }
-        
+        dispatch_async(dispatch_get_main_queue(),^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"News Finished" object:self];
+        });
+
     }];
     [dataTask resume];
     

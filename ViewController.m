@@ -43,7 +43,7 @@
     
     self.nameInputTextField.delegate = self;
 #pragma mark PLACEHOLDER, comment out for real searching
-    self.nameInputTextField.text = @"Brad Pitt";
+    self.nameInputTextField.text = @"Bernie Sanders";
     // self.nameInputTextField.text = self.sharedManager.userSearchString;
     
     self.navigationItem.leftBarButtonItem= infoButton;
@@ -118,6 +118,10 @@
     [super viewWillAppear:YES];
     self.firstTimeCalled = YES;
     //[self triggerLoadingView:self];
+    posCompletion = NO;
+    negCompletion = NO;
+    neuCompletion = NO;
+    newsDownload = NO;
 }
 
 
@@ -145,7 +149,10 @@
         ResultController *resultController = [[ResultController alloc] init];
         [self presentViewController:resultController animated:YES completion:nil];
         //[self resultLauncher];
-        [self triggerLoadingView:self];
+        // hide loading view if it's showing
+        if (self.loadingView.isHidden == false) {
+            [self triggerLoadingView:self];
+        }
     }
 }
 

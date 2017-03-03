@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DAO.h"
 #import "NewsStory.h"
+#import "CustomCell.h"
 
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -19,6 +20,8 @@ alpha:1.0]
 @interface ResultController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (retain, nonatomic) DAO *sharedManager;
+
+@property (retain, nonatomic) NewsStory *currentNewsStory;
 
 @property (strong, nonatomic) IBOutlet UIView *resultContainerView;
 @property (weak, nonatomic) IBOutlet UIView *scoreBackgroundView;

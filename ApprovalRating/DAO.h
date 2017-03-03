@@ -19,6 +19,9 @@
 @property (strong, nonatomic) NSString* noSpacesUserSearchString;
 @property (strong, nonatomic) NSString* fixedUserSearchString;
 
+@property (strong, nonatomic) NSMutableString* imageURL;
+@property (strong, nonatomic) NSMutableString* source;
+
 @property (strong, nonatomic) NSMutableArray* newsStories;
 @property (strong, nonatomic) NSString *myAPIToken;
 
