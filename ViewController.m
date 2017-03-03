@@ -52,8 +52,11 @@
     self.submitButton.layer.cornerRadius = 5;
     
     
-    self.dao = [[DAO alloc]init];
+    self.dao = [DAO sharedManager];
     
+    self.dao.userSearchString = [[NSMutableString alloc]init];
+    self.dao.noSpacesUserSearchString = [self.dao.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    self.dao.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
     
     
     // Gradient background view

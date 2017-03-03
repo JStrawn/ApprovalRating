@@ -29,14 +29,14 @@
 
 
 - (id)init {
+    self = [super init];
+    
     self.myAPIToken = @"bdfe913e-d37f-4f75-83a5-3c41b7443483";
     
 #pragma mark This is a dummy request, comment out line 26 when using user generated search
     //self.userSearchString = @"Bernie Sanders";
     //self.userSearchString = self.vc.nameInputTextField.text;
-    self.userSearchString = [[NSMutableString alloc]init];
-    self.noSpacesUserSearchString = [self.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    self.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
+
 
     return self;
 }
@@ -131,6 +131,7 @@
         if (sentimentType == 0) {
             self.positiveSentimentValue = self.numberOfStories;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Positive Finished" object:self];
+            NSLog(@" ############# positive sentiment score: %d", self.positiveSentimentValue);
 
         } else if (sentimentType == 1) {
             self.negativeSentimentValue = self.numberOfStories;
@@ -158,7 +159,7 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         //convert data into dictionary
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSLog(@"Dictionary: %@", dictionary);
+        // NSLog(@"Dictionary: %@", dictionary);
         
         //for in loop
         NSDictionary *posts = [dictionary objectForKey:@"posts"];
