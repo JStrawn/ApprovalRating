@@ -143,10 +143,16 @@
     //return YES;
 }
 
+///////////////////////////////////////////////////////////////////////////
+//
+// Keyboard adjustments
+//
+///////////////////////////////////////////////////////////////////////////
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.nameInputTextField) {
         [textField resignFirstResponder];
-        [self dismissKeyboard];
+        // [self dismissKeyboard];
         return NO;
     }
     return YES;
@@ -157,24 +163,14 @@
 }
 
 - (void)keyboardDidShow: (NSNotification *) notif{
-    
-    [self.heroImage setHidden:YES];
-    textFrame = self.nameInputTextField.frame;
-    
-    [self.nameInputTextField setFrame:CGRectMake(
-                                                 textFrame.origin.x,
-                                                 textFrame.origin.y-125,
-                                                 textFrame.size.width,
-                                                 textFrame.size.height)];
 
+    self.view.frame = CGRectMake(0, -140, self.view.frame.size.width, self.view.frame.size.height);
 
 }
 
 - (void)keyboardDidHide: (NSNotification *) notif{
 
-    [self.heroImage setHidden:NO];
-    self.nameInputTextField.frame = textFrame;
- 
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 
 }
 
