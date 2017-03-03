@@ -13,6 +13,8 @@
 
 //@property (strong, nonatomic) ViewController *vc;
 
++ (id)sharedManager;
+
 @property (strong, nonatomic) NSString* userSearchString;
 @property (strong, nonatomic) NSString* noSpacesUserSearchString;
 @property (strong, nonatomic) NSString* fixedUserSearchString;
