@@ -10,4 +10,6 @@
 
 @interface ResultController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIView *resultContainerView;
+
 @end

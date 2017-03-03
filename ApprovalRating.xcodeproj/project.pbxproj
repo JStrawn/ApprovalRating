@@ -50,7 +50,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C5C20631E68E62A00CA4356 /* Controller */ = {
+		2C5C20631E68E62A00CA4356 /* View & Controller */ = {
 			isa = PBXGroup;
 			children = (
 				2C5C20691E68EFB300CA4356 /* ResultController.xib */,
@@ -60,7 +60,7 @@
 				C333DB391E6895510065A82E /* ViewController.h */,
 				C333DB3A1E6895510065A82E /* ViewController.m */,
 			);
-			name = Controller;
+			name = "View & Controller";
 			sourceTree = "<group>";
 		};
 		2C5C20641E68E64000CA4356 /* Model */ = {
@@ -92,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				C333DB251E6893CA0065A82E /* AppDelegate.h */,
-				2C5C20631E68E62A00CA4356 /* Controller */,
+				2C5C20631E68E62A00CA4356 /* View & Controller */,
 				C333DB261E6893CA0065A82E /* AppDelegate.m */,
 				2C5C20641E68E64000CA4356 /* Model */,
 				C333DB411E68CA4B0065A82E /* NewsStory.h */,
