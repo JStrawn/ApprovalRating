@@ -19,5 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *posScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *neuScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *negScoreLabel;
+@property (weak, nonatomic) IBOutlet UIButton *dismissButton;
+
+// testing
+- (IBAction)dismissButtonPrsd:(id)sender;
 
 @end
