@@ -126,19 +126,16 @@
         //Guys: You can hide/unhide the customView using nstimer!!!!!!!!!!!!!!!!!!!//
         self.resultViewController = [[ResultController alloc]init];
 
-        [self.navigationController
-         pushViewController:self.resultViewController
-         animated:YES];
-        //        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
-        //}
+        
+        [self presentViewController:self.resultViewController animated:YES completion:nil];
     }
 }
 
--(void)checkDLCompletion {
-    if (negCompletion && neuCompletion && posCompletion && newsDownload) {
-        //execute results VD
-    }
-}
+//-(void)checkDLCompletion {
+//    if (negCompletion && neuCompletion && posCompletion && newsDownload) {
+//        //execute results VD
+//    }
+//}
 
 - (IBAction)submitButtonPrsd:(id)sender {
     
