@@ -51,7 +51,12 @@
     
     self.dao = [[DAO alloc]init];
     
-    self.view.backgroundColor = [UIColor redColor];
+    [self.dao getPositiveSentimentValues];
+    [self.dao getNegativeSentimentValues];
+    [self.dao getNeutralSentimentValues];
+    [self.dao getNewsStories];
+    
+    NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
     
     // Gradient view
     CAGradientLayer *gradient = [CAGradientLayer layer];
