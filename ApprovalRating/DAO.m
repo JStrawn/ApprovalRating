@@ -31,13 +31,6 @@
     return self;
 }
 
-//- (instancetype)initWithDelegate:(id<NSURLSessionDownloadDelegate>)delegate {
-//    self = [super init];
-//    if (self) {
-//        self.delegate = delegate;
-//    }
-//    return self;
-//}
 
 - (void)getPositiveSentimentValues {
     
@@ -166,9 +159,10 @@
             NSString *title = [currentThread objectForKey:@"title"];
             NSString *url = [currentThread objectForKey:@"url"];
             NSString *imageURL = [currentThread objectForKey:@"main_image"];
+            NSString *source = [currentThread objectForKey:@"site"];
             
             self.newsStories = [[NSMutableArray alloc]init];
-            NewsStory *currentStory = [[NewsStory alloc]initWithTitle:title andURL:url andImageURL:imageURL];
+            NewsStory *currentStory = [[NewsStory alloc]initWithTitle:title andURL:url andImageURL:imageURL andSource:source];
             NSString *performanceScore = [currentThread objectForKey:@"performance_score"];
             double performanceDouble = performanceScore.doubleValue;
             currentStory.score = performanceDouble;

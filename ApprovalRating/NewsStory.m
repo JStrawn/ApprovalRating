@@ -10,14 +10,14 @@
 
 @implementation NewsStory
 
-- (instancetype)initWithTitle:(NSString*)Title andURL:(NSString*)URL andImageURL:(NSString*)imageURL
+- (instancetype)initWithTitle:(NSString*)Title andURL:(NSString*)URL andImageURL:(NSString*)imageURL andSource:(NSString*)site
 {
     self = [super init];
     if (self) {
         self.newsTitle = Title;
         self.url = URL;
         self.imageURL = imageURL;
-
+        self.source = site;
     }
     return self;
 }
