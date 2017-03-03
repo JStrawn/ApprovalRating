@@ -50,10 +50,19 @@
     self.submitButton.backgroundColor = UIColorFromRGB(0x6da7d3);
     self.submitButton.layer.cornerRadius = 5;
     
+    
+    self.dao = [[DAO alloc]init];
+    
+    [self.dao getPositiveSentimentValues];
+    [self.dao getNegativeSentimentValues];
+    [self.dao getNeutralSentimentValues];
+    [self.dao getNewsStories];
+    
+    
     // Gradient view
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
-    gradient.frame = self.view.bounds;
+    gradient.frame = [[UIScreen mainScreen] bounds];
     gradient.colors = @[(id)UIColorFromRGB(0xae4ea7).CGColor, (id)UIColorFromRGB(0x7abff2).CGColor];
     
     [self.view.layer insertSublayer:gradient atIndex:0];
@@ -67,7 +76,12 @@
 
 }
 
--(void)apiCallComplete:(NSNotification*)notification
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)receivedNotification:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:@"Address Found"]) {
 //        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);

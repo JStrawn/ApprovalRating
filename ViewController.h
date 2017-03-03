@@ -6,7 +6,6 @@
 //  Copyright © 2017 JStrawn. All rights reserved.
 //
 
-
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "ResultController.h"
