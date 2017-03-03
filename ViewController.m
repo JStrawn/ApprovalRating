@@ -74,7 +74,21 @@
     //register for download finished notification
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedNotification:)
-                                                 name:@"Download Finished"
+                                                 name:@"Positive Finished"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"Negative Finished"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"Neutral Finished"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"News Finished"
                                                object:nil];
     
     //register for keyboard notifications
