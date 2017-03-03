@@ -49,23 +49,23 @@
 }
 
 -(void)talliedSentimentResults {
-    self.posScoreLabel.text = [NSString stringWithFormat:@"%d", self.daoData.positiveSentimentValue];
-    self.neuScoreLabel.text = [NSString stringWithFormat:@"%d", self.daoData.neutralSentimentValue];
-    self.negScoreLabel.text = [NSString stringWithFormat:@"%d", self.daoData.negativeSentimentValue];
+    self.posScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.positiveSentimentValue];
+    self.neuScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.neutralSentimentValue];
+    self.negScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.negativeSentimentValue];
 }
 
 -(void)approvalRatingCalculated {
     
-    double totalresults = self.daoData.positiveSentimentValue + self.daoData.neutralSentimentValue + self.daoData.negativeSentimentValue;
+    double totalresults = self.sharedManager.positiveSentimentValue + self.sharedManager.neutralSentimentValue + self.sharedManager.negativeSentimentValue;
     
-    double calculatedPercentage = self.daoData.positiveSentimentValue/totalresults;
+    double calculatedPercentage = self.sharedManager.positiveSentimentValue/totalresults;
     
     self.approvalRatingResult.text = [NSString stringWithFormat:@"%f",calculatedPercentage];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.daoData.newsStories.count;
+    return self.sharedManager.newsStories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
