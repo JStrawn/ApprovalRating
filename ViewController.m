@@ -77,18 +77,11 @@
 
 -(void)apiCallComplete:(NSNotification*)notification
 {
- //refresh the tableview and other stuff - this is called every time an api call completes
+    if ([[notification name] isEqualToString:@"Address Found"]) {
+        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)submitButtonPrsd:(id)sender {
 }

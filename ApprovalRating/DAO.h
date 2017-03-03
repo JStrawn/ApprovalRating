@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DAO : NSObject <NSURLSessionDownloadDelegate>
+@interface DAO : NSObject
 
-@property (nonatomic, weak) id<NSURLSessionDownloadDelegate> delegate;
 
 @property (strong, nonatomic) NSString* userSearchString;
 @property (strong, nonatomic) NSString* noSpacesUserSearchString;
