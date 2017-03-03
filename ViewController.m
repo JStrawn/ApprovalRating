@@ -11,6 +11,11 @@
 
 @interface ViewController () <UITextFieldDelegate> {
     CGRect textFrame;
+    
+    bool posCompletion;
+    bool neuCompletion;
+    bool negCompletion;
+    bool newsDownload;
 }
 
 @end
@@ -106,6 +111,12 @@
 {
     if ([[notification name] isEqualToString:@"Positive Finished"]) {
         self.pos
+    }
+}
+
+-(void)checkDLCompletion {
+    if (negCompletion && neuCompletion && posCompletion && newsDownload) {
+        //execute results VD
     }
 }
 
