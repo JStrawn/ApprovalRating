@@ -11,7 +11,7 @@
 #import "NewsStory.h"
 #import "ResultController.h"
 
-@interface DAO () <NSURLSessionDownloadDelegate>
+@interface DAO ()
 
 @end
 
@@ -22,7 +22,8 @@
     self.myAPIToken = @"bdfe913e-d37f-4f75-83a5-3c41b7443483";
     
 #pragma mark This is a dummy request, comment out line 26 when using user generated search
-    self.userSearchString = @"Bernie Sanders";
+    //self.userSearchString = @"Bernie Sanders";
+    self.userSearchString = self.vc.nameInputTextField.text;
     self.noSpacesUserSearchString = [self.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     self.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
 
@@ -171,7 +172,7 @@
             double performanceDouble = performanceScore.doubleValue;
             currentStory.score = performanceDouble;
             
-            ResultController *rc = [[ResultController alloc]init];
+            //ResultController *rc = [[ResultController alloc]init];
             
             
             [self.newsStories addObject:currentStory];

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 @interface DAO : NSObject
 
+@property (strong, nonatomic) ViewController *vc;
 
 @property (strong, nonatomic) NSString* userSearchString;
 @property (strong, nonatomic) NSString* noSpacesUserSearchString;
