@@ -20,6 +20,7 @@ alpha:1.0]
 @interface ViewController : UIViewController
 
 @property (strong, nonatomic) DAO *dao;
+@property (retain, nonatomic) ResultController *resultViewController;
 @property (strong, nonatomic) NSString* noSpacesUserSearchString;
 @property (strong, nonatomic) NSString* fixedUserSearchString;
 
@@ -29,6 +30,9 @@ alpha:1.0]
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet UITextField *nameInputTextField;
 @property (weak, nonatomic) IBOutlet UIView *loadingView;
+
+@property BOOL firstTimeCalled;
+@property int timesCalled;
 
 - (IBAction)submitButtonPrsd:(id)sender;
 - (IBAction)resultLauncher:(id)sender;
