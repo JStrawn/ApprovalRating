@@ -142,7 +142,7 @@
         self.loadingView.hidden = !self.loadingView.hidden;
         self.loadingView.hidden = !self.loadingView.hidden;
     }
-    return YES;
+    //return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
