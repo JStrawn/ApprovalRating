@@ -20,8 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     //Initializing daoData
     self.sharedManager = [DAO sharedManager];
+    self.
     
     ///////////////////////////////////////////////////////////////////////////
     //
@@ -42,30 +46,28 @@
     
     self.scoreBackgroundView.backgroundColor = UIColorFromRGB(0x7abaef);
     
-    //Initializing Methods//
-    [self talliedSentimentResults];
+    // Initializing Methods
+    self.posScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.positiveSentimentValue];
+    self.neuScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.neutralSentimentValue];
+    self.negScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.negativeSentimentValue];
+    
     [self approvalRatingCalculated];
     
 }
 
--(void)talliedSentimentResults {
-    self.posScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.positiveSentimentValue];
-    self.neuScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.neutralSentimentValue];
-    self.negScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.negativeSentimentValue];
-}
 
 -(void)approvalRatingCalculated {
     
     double totalresults = self.sharedManager.positiveSentimentValue + self.sharedManager.neutralSentimentValue + self.sharedManager.negativeSentimentValue;
     
-    double calculatedPercentage = self.sharedManager.positiveSentimentValue/totalresults;
+    double calculatedPercentage = self.sharedManager.positiveSentimentValue/totalresults * 100;
     
-    self.approvalRatingResult.text = [NSString stringWithFormat:@"%f",calculatedPercentage];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%.f%%",calculatedPercentage];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.sharedManager.newsStories.count;
+    return [self.sharedManager.newsStories count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,7 +78,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = @"This is a test";
+    NewsStory *story = [[NewsStory alloc]init];
+    story = self.sharedManager.newsStories[indexPath.row];
+    
+    cell.textLabel.text = story.newsTitle;
+    
     return cell;
 }
 
@@ -85,4 +91,5 @@
 - (IBAction)dismissButtonPrsd:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

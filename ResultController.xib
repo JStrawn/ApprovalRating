@@ -22,6 +22,7 @@
                 <outlet property="scoreLabel" destination="Hnr-14-3JE" id="nYE-7a-QpA"/>
                 <outlet property="searchTermLabel" destination="LF0-M7-nxN" id="DkL-N7-Fup"/>
                 <outlet property="summaryContainerView" destination="wve-LZ-QYh" id="cjf-T1-tNc"/>
+                <outlet property="tableView" destination="qa3-Ld-BCy" id="gKd-0L-3yD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
