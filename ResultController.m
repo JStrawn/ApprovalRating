@@ -42,17 +42,15 @@
     
     self.scoreBackgroundView.backgroundColor = UIColorFromRGB(0x7abaef);
     
-    //Initializing Methods//
-    [self talliedSentimentResults];
+    // Initializing Methods
+    self.posScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.positiveSentimentValue];
+    self.neuScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.neutralSentimentValue];
+    self.negScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.negativeSentimentValue];
+    
     [self approvalRatingCalculated];
     
 }
 
--(void)talliedSentimentResults {
-    self.posScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.positiveSentimentValue];
-    self.neuScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.neutralSentimentValue];
-    self.negScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.negativeSentimentValue];
-}
 
 -(void)approvalRatingCalculated {
     
@@ -60,7 +58,7 @@
     
     double calculatedPercentage = self.sharedManager.positiveSentimentValue/totalresults;
     
-    self.approvalRatingResult.text = [NSString stringWithFormat:@"%f",calculatedPercentage];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%f",calculatedPercentage];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -85,4 +83,5 @@
 - (IBAction)dismissButtonPrsd:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

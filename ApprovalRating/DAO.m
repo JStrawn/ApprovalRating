@@ -181,10 +181,10 @@
             
             [self.newsStories addObject:currentStory];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"News Finished" object:self];
+            
 
         }
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"News Finished" object:self];
     }];
     [dataTask resume];
     });

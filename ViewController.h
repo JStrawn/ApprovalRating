@@ -19,7 +19,7 @@ alpha:1.0]
 
 @interface ViewController : UIViewController
 
-@property (strong, nonatomic) DAO *dao;
+@property (strong, nonatomic) DAO *sharedManager;
 @property (retain, nonatomic) ResultController *resultViewController;
 @property (strong, nonatomic) NSString* noSpacesUserSearchString;
 @property (strong, nonatomic) NSString* fixedUserSearchString;

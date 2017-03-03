@@ -53,11 +53,11 @@
     self.submitButton.layer.cornerRadius = 5;
     
     
-    self.dao = [DAO sharedManager];
+    self.sharedManager = [DAO sharedManager];
     
-    self.dao.userSearchString = [[NSMutableString alloc]init];
-    self.dao.noSpacesUserSearchString = [self.dao.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    self.dao.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
+    self.sharedManager.userSearchString = [[NSMutableString alloc]init];
+    self.sharedManager.noSpacesUserSearchString = [self.sharedManager.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    self.sharedManager.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
     
     
     // Gradient background view
@@ -73,7 +73,6 @@
     // DAO Init, Testing, & Keyboard
     //
     ///////////////////////////////////////////////////////////////////////////
-    self.dao = [[DAO alloc]init];
     
     //register for download finished notification
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -141,28 +140,32 @@
 }
 
 -(void)checkDLCompletion {
-    if (negCompletion == YES && neuCompletion == YES && posCompletion == YES && newsDownload == YES) {
-        [self resultLauncher:self];
+    if (negCompletion && neuCompletion && posCompletion && newsDownload) {
+        ResultController *resultController = [[ResultController alloc] init];
+        [self presentViewController:resultController animated:YES completion:nil];
+        //[self resultLauncher];
+        [self triggerLoadingView:self];
     }
 }
 
 - (IBAction)submitButtonPrsd:(id)sender {
     
-    self.dao.userSearchString = self.nameInputTextField.text;
-    self.dao.noSpacesUserSearchString = [self.dao.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    self.dao.fixedUserSearchString = [self.dao.noSpacesUserSearchString stringByAppendingString:@"%20"];
+    self.sharedManager.userSearchString = self.nameInputTextField.text;
+    self.sharedManager.noSpacesUserSearchString = [self.sharedManager.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    self.sharedManager.fixedUserSearchString = [self.sharedManager.noSpacesUserSearchString stringByAppendingString:@"%20"];
     
-    [self.dao getPositiveSentimentValues];
-    [self.dao getNegativeSentimentValues];
-    [self.dao getNeutralSentimentValues];
-    [self.dao getNewsStories];
+    [self.sharedManager getPositiveSentimentValues];
+    [self.sharedManager getNegativeSentimentValues];
+    [self.sharedManager getNeutralSentimentValues];
+    [self.sharedManager getNewsStories];
     
     [self triggerLoadingView:self];
 }
 
 //This is to test the push to the resultViewController//
-- (IBAction)resultLauncher:(id)sender {
+- (void)resultLauncher {
     ResultController *resultController = [[ResultController alloc] init];
+    // resultController.posScoreLabel.text = [NSString stringWithFormat:@"%d",self.dao.positiveSentimentValue];
     [self presentViewController:resultController animated:YES completion:nil];
 }
 //This is to test the 'loadingView'//
