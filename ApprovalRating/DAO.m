@@ -130,7 +130,7 @@
             self.neutralSentimentValue = self.numberOfStories;
         }
             
-        [self.delegate didRetreiveInfo:data];
+        // [self.delegate didRetreiveInfo:data];
 
         });
 

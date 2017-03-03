@@ -95,6 +95,17 @@
                         <constraint firstItem="Sbo-ff-1y7" firstAttribute="top" secondItem="S92-49-DsC" secondAttribute="bottom" constant="10" id="zAx-Xy-czC"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bme-LW-Pji">
+                    <rect key="frame" x="209" y="607" width="128" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.76058728450000002" green="0.16208900570000001" blue="0.17867107779999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Test Results">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="resultLauncher:" destination="-1" eventType="touchUpInside" id="7sq-ee-PFZ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -103,6 +114,7 @@
                 <constraint firstItem="AeY-qJ-pis" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="130" id="NuV-5k-Gak"/>
                 <constraint firstAttribute="trailing" secondItem="AeY-qJ-pis" secondAttribute="trailing" constant="30" id="zOq-Db-daY"/>
             </constraints>
+            <point key="canvasLocation" x="33.5" y="106.5"/>
         </view>
     </objects>
     <resources>
