@@ -160,6 +160,7 @@
 
 - (void)keyboardDidShow: (NSNotification *) notif{
     
+    [self.heroImage setHidden:YES];
     textFrame = self.nameInputTextField.frame;
     
     [self.nameInputTextField setFrame:CGRectMake(
@@ -173,7 +174,7 @@
 
 - (void)keyboardDidHide: (NSNotification *) notif{
 
-
+    [self.heroImage setHidden:NO];
     self.nameInputTextField.frame = textFrame;
  
 
