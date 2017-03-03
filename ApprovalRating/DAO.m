@@ -28,13 +28,13 @@
     return self;
 }
 
-- (instancetype)initWithDelegate:(id<NSURLSessionDownloadDelegate>)delegate {
-    self = [super init];
-    if (self) {
-        self.delegate = delegate;
-    }
-    return self;
-}
+//- (instancetype)initWithDelegate:(id<NSURLSessionDownloadDelegate>)delegate {
+//    self = [super init];
+//    if (self) {
+//        self.delegate = delegate;
+//    }
+//    return self;
+//}
 
 - (void)getPositiveSentimentValues {
     
@@ -107,19 +107,21 @@
 
 - (void) dataRequestForSentiments:(NSString*)urlString sentType:(int)sentimentType {
     
-
-    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request =[[NSMutableURLRequest alloc]initWithURL:url];
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        
+        //dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
 
         //convert data into array
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        NSNumber *numOfStories = [dictionary objectForKey:@"totalResults"];
+            NSLog(@"%@", dictionary);
+        NSDictionary *posts = [dictionary objectForKey:@"posts"];
+        NSDictionary *thread = [posts objectForKey:@"thread"];
+        NSNumber *numOfStories = [posts objectForKey:@"totalResults"];
         self.numberOfStories = [numOfStories doubleValue];
         
         if (sentimentType == 0) {
@@ -136,7 +138,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Address Found" object:self];
 
             
-        });
+        //});
 
     }];
     [dataTask resume];
