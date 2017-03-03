@@ -135,11 +135,9 @@
         [UIView commitAnimations];
         self.loadingView.hidden = !self.loadingView.hidden;
     } else {
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.5];
+
         [self.loadingView setAlpha:0];
         [UIView commitAnimations];
-        self.loadingView.hidden = !self.loadingView.hidden;
         self.loadingView.hidden = !self.loadingView.hidden;
     }
     //return YES;
