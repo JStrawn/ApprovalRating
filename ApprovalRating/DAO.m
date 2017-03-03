@@ -130,8 +130,12 @@
             self.neutralSentimentValue = self.numberOfStories;
         }
             
-        [self.delegate didRetreiveInfo:data];
+        //[self.delegate didRetreiveInfo:data];
+        // NSNotification broadcast here
+        //how to bring this back to the main queue
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Address Found" object:self];
 
+            
         });
 
     }];

@@ -49,7 +49,6 @@
     self.submitButton.layer.cornerRadius = 5;
     
     
-    
     self.dao = [[DAO alloc]init];
     
     self.view.backgroundColor = [UIColor redColor];
@@ -63,9 +62,15 @@
     [self.view.layer insertSublayer:gradient atIndex:0];
     
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"Address Found"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"Not Found"
+                                               object:nil];
     
-    
-    NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
 
 }
 
@@ -74,20 +79,13 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)apiCallComplete:(NSNotification*)notification
+-(void)receivedNotification:(NSNotification*)notification
 {
- //refresh the tableview and other stuff - this is called every time an api call completes
+    if ([[notification name] isEqualToString:@"Address Found"]) {
+        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)submitButtonPrsd:(id)sender {
 }
