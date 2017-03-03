@@ -9,7 +9,7 @@
 #import "ViewController.h"
 //#import "DAO.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
 @property double postiveScore;
 @property double negativeScore;
@@ -43,7 +43,7 @@
     infoButtonView.frame = CGRectMake(0, 0, 20, 20);
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:infoButtonView];
 
-    
+    self.nameInputTextField.delegate = self;
     self.navigationItem.leftBarButtonItem= infoButton;
     
     // submit button
@@ -52,11 +52,6 @@
     
     
     self.dao = [[DAO alloc]init];
-    
-    [self.dao getPositiveSentimentValues];
-    [self.dao getNegativeSentimentValues];
-    [self.dao getNeutralSentimentValues];
-    [self.dao getNewsStories];
     
     
     // Gradient background view
@@ -73,17 +68,6 @@
     //
     ///////////////////////////////////////////////////////////////////////////
     self.dao = [[DAO alloc]init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receivedNotification:)
-                                                 name:@"Address Found"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receivedNotification:)
-                                                 name:@"Not Found"
-                                               object:nil];
-    
-    NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
 
 }
 
@@ -95,7 +79,7 @@
 -(void)receivedNotification:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:@"Address Found"]) {
-        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
+//        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
     }
 }
 
@@ -103,6 +87,15 @@
 - (IBAction)submitButtonPrsd:(id)sender {
     
     self.dao.userSearchString = self.nameInputTextField.text;
+    self.dao.noSpacesUserSearchString = [self.dao.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    self.dao.fixedUserSearchString = [self.dao.noSpacesUserSearchString stringByAppendingString:@"%20"];
+    
+    [self.dao getPositiveSentimentValues];
+    [self.dao getNegativeSentimentValues];
+    [self.dao getNeutralSentimentValues];
+    [self.dao getNewsStories];
+    
+
 }
 
 - (IBAction)resultLauncher:(id)sender {
