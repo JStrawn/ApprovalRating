@@ -13,15 +13,6 @@
     CGRect textFrame;
 }
 
-@property double postiveScore;
-@property double negativeScore;
-@property double neutralScore;
-@property double totalScore;
-
-@property double postivePercentage;
-@property double negativePercentage;
-@property double neutralPercentage;
-
 @end
 
 @implementation ViewController
@@ -44,7 +35,7 @@
     UIImageView *infoButtonView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"info_icon.png"]];
     infoButtonView.frame = CGRectMake(0, 0, 20, 20);
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:infoButtonView];
-
+    
     self.nameInputTextField.delegate = self;
 #pragma mark PLACEHOLDER, comment out for real searching
     self.nameInputTextField.text = @"Bernie Sanders";
@@ -75,6 +66,12 @@
     ///////////////////////////////////////////////////////////////////////////
     self.dao = [[DAO alloc]init];
     
+    //register for download finished notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"Download Finished"
+                                               object:nil];
+    
     //register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardDidShow:)
@@ -87,13 +84,18 @@
                                                object:nil];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                           action:@selector(dismissKeyboard)];
+                                                                          action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-
+    
     self.nameInputTextField.translatesAutoresizingMaskIntoConstraints = YES;
-
-
+    
+    
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.firstTimeCalled = YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -102,11 +104,27 @@
 
 -(void)receivedNotification:(NSNotification*)notification
 {
-    if ([[notification name] isEqualToString:@"Address Found"]) {
-//        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
+    if ([[notification name] isEqualToString:@"Download Finished"]) {
+        
+        self.resultViewController = [[ResultController alloc]init];
+        if (self.firstTimeCalled == YES) {
+            self.timesCalled = 1;
+            self.firstTimeCalled = NO;
+        } else {
+            self.timesCalled = self.timesCalled + 1;
+        }
+        
+        if (self.timesCalled == 3) {
+        
+        //Guys: You can hide/unhide the customView using nstimer!!!!!!!!!!!!!!!!!!!//
+        
+        [self.navigationController
+         pushViewController:self.resultViewController
+         animated:YES];
+        //        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
+        }
     }
 }
-
 
 - (IBAction)submitButtonPrsd:(id)sender {
     
@@ -119,14 +137,15 @@
     [self.dao getNeutralSentimentValues];
     [self.dao getNewsStories];
     
-    [self resultLauncher:self];
-    
+    [self triggerLoadingView:self];
 }
 
+//This is to test the push to the resultViewController//
 - (IBAction)resultLauncher:(id)sender {
     ResultController *resultController = [[ResultController alloc] init];
     [self presentViewController:resultController animated:YES completion:nil];
 }
+//This is to test the 'loadingView'//
 - (IBAction)triggerLoadingView:(id)sender {
     if (self.loadingView.hidden) {
         [UIView beginAnimations:nil context:NULL];
@@ -135,7 +154,7 @@
         [UIView commitAnimations];
         self.loadingView.hidden = !self.loadingView.hidden;
     } else {
-
+        
         [self.loadingView setAlpha:0];
         [UIView commitAnimations];
         self.loadingView.hidden = !self.loadingView.hidden;
@@ -166,16 +185,16 @@
                                                  textFrame.origin.y-125,
                                                  textFrame.size.width,
                                                  textFrame.size.height)];
-
-
+    
+    
 }
 
 - (void)keyboardDidHide: (NSNotification *) notif{
-
+    
     [self.heroImage setHidden:NO];
     self.nameInputTextField.frame = textFrame;
- 
-
+    
+    
 }
 
 

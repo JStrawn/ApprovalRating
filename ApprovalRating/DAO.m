@@ -129,7 +129,7 @@
         //[self.delegate didRetreiveInfo:data];
         // NSNotification broadcast here
         //how to bring this back to the main queue
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Address Found" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Download Finished" object:self];
 
             
         //});

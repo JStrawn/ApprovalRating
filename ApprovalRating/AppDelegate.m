@@ -23,19 +23,19 @@
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     [self.navController.navigationBar setBackgroundImage:[UIImage imageNamed:@"blk_bg.png"]
-                             forBarMetrics:UIBarMetricsDefault];
+                                           forBarMetrics:UIBarMetricsDefault];
     self.navController.navigationBar.translucent = true;
     self.window.rootViewController = self.navController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
     
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-//    self.window.rootViewController = self.viewController;
-//    [self.window makeKeyAndVisible];
-
+    //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //    // Override point for customization after application launch.
+    //    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    //    self.window.rootViewController = self.viewController;
+    //    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
