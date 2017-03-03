@@ -123,33 +123,23 @@
 
 -(void)receivedNotification:(NSNotification*)notification
 {
+    if ([[notification name] isEqualToString:@"Positive Finished"]) {
+        posCompletion = YES;
+    } if ([[notification name] isEqualToString:@"Negative Finished"]) {
+        negCompletion = YES;
+    } if ([[notification name] isEqualToString:@"Neutral Finished"]) {
+        neuCompletion = YES;
+    } if ([[notification name] isEqualToString:@"News Finished"])
+        newsDownload = YES;
     
-    
-    if ([[notification name] isEqualToString:@"Download Finished"]) {
-        
-//        self.resultViewController = [[ResultController alloc]init];
-//        if (self.firstTimeCalled == YES) {
-//            self.timesCalled = 1;
-//            self.firstTimeCalled = NO;
-//        } else {
-//            self.timesCalled = self.timesCalled + 1;
-//        }
-//        
-//        if (self.timesCalled == 3) {
-        
-        //Guys: You can hide/unhide the customView using nstimer!!!!!!!!!!!!!!!!!!!//
-        self.resultViewController = [[ResultController alloc]init];
-
-        
-        [self presentViewController:self.resultViewController animated:YES completion:nil];
-    }
+    [self checkDLCompletion];
 }
 
-//-(void)checkDLCompletion {
-//    if (negCompletion && neuCompletion && posCompletion && newsDownload) {
-//        //execute results VD
-//    }
-//}
+-(void)checkDLCompletion {
+    if (negCompletion == YES && neuCompletion == YES && posCompletion == YES && newsDownload == YES) {
+        [self resultLauncher:self];
+    }
+}
 
 - (IBAction)submitButtonPrsd:(id)sender {
     
