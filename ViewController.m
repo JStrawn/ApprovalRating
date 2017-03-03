@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "DAO.h"
+//#import "DAO.h"
 
 @interface ViewController ()
 
@@ -84,6 +84,8 @@
 
 
 - (IBAction)submitButtonPrsd:(id)sender {
+    
+    self.dao.userSearchString = self.nameInputTextField.text;
 }
 
 - (IBAction)resultLauncher:(id)sender {

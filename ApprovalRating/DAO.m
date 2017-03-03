@@ -23,7 +23,8 @@
     
 #pragma mark This is a dummy request, comment out line 26 when using user generated search
     //self.userSearchString = @"Bernie Sanders";
-    self.userSearchString = self.vc.nameInputTextField.text;
+    //self.userSearchString = self.vc.nameInputTextField.text;
+    self.userSearchString = [[NSMutableString alloc]init];
     self.noSpacesUserSearchString = [self.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     self.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
 
