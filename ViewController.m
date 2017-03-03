@@ -62,7 +62,7 @@
     // Gradient view
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
-    gradient.frame = self.view.bounds;
+    gradient.frame = [[UIScreen mainScreen] bounds];
     gradient.colors = @[(id)UIColorFromRGB(0xae4ea7).CGColor, (id)UIColorFromRGB(0x7abff2).CGColor];
     
     [self.view.layer insertSublayer:gradient atIndex:0];
