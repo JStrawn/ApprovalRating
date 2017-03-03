@@ -21,12 +21,19 @@
     // UI Related
     //
     ///////////////////////////////////////////////////////////////////////////
-    self.scoreBackgroundView.layer.cornerRadius = 35;
+    self.scoreBackgroundView.layer.cornerRadius = 40;
     self.scoreBackgroundView.layer.masksToBounds = true;
     
     UIImage *exitIcon = [UIImage imageNamed:@"exit.png"];
     [self.dismissButton setImage:exitIcon forState:UIControlStateNormal];
     
+    // Gradient background view
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.summaryContainerView.layer.frame;
+    gradient.colors = @[(id)UIColorFromRGB(0x121212).CGColor, (id)UIColorFromRGB(0x333333).CGColor];
+    [self.summaryContainerView.layer insertSublayer:gradient atIndex:0];
+    
+    self.scoreBackgroundView.backgroundColor = UIColorFromRGB(0x7abaef);
     
 }
 

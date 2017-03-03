@@ -59,7 +59,7 @@
     [self.dao getNewsStories];
     
     
-    // Gradient view
+    // Gradient background view
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
     gradient.frame = [[UIScreen mainScreen] bounds];
@@ -108,6 +108,23 @@
 - (IBAction)resultLauncher:(id)sender {
     ResultController *resultController = [[ResultController alloc] init];
     [self presentViewController:resultController animated:YES completion:nil];
+}
+
+- (IBAction)triggerLoadingView:(id)sender {
+    if (self.loadingView.hidden) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.5];
+        [self.loadingView setAlpha:0.8];
+        [UIView commitAnimations];
+        self.loadingView.hidden = !self.loadingView.hidden;
+    } else {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.5];
+        [self.loadingView setAlpha:0];
+        [UIView commitAnimations];
+        self.loadingView.hidden = !self.loadingView.hidden;
+    }
+
 }
 
 @end

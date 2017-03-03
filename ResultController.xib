@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,6 +21,7 @@
                 <outlet property="scoreBackgroundView" destination="D66-wZ-JP4" id="Kbz-t0-mGW"/>
                 <outlet property="scoreLabel" destination="Hnr-14-3JE" id="nYE-7a-QpA"/>
                 <outlet property="searchTermLabel" destination="LF0-M7-nxN" id="DkL-N7-Fup"/>
+                <outlet property="summaryContainerView" destination="wve-LZ-QYh" id="cjf-T1-tNc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -45,13 +46,13 @@
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEUTRAL SENTIMENT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEM-K2-Lb5">
                             <rect key="frame" x="125" y="161" width="125" height="44"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEGATIVE SENTIMENT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oc7-TZ-1Ag">
                             <rect key="frame" x="250" y="161" width="125" height="44"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -60,7 +61,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="pUJ-4b-xNo"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -101,10 +102,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D66-wZ-JP4">
-                            <rect key="frame" x="268" y="50" width="71" height="71"/>
+                            <rect key="frame" x="259" y="50" width="80" height="80"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnr-14-3JE">
-                                    <rect key="frame" x="-0.5" y="0.0" width="71" height="71"/>
+                                    <rect key="frame" x="-0.5" y="0.0" width="80" height="80"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -112,15 +113,16 @@
                             </subviews>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="Hnr-14-3JE" firstAttribute="height" secondItem="D66-wZ-JP4" secondAttribute="height" id="4cv-jQ-owf"/>
+                                <constraint firstItem="Hnr-14-3JE" firstAttribute="height" secondItem="D66-wZ-JP4" secondAttribute="height" id="CZd-tC-rgL"/>
                                 <constraint firstItem="Hnr-14-3JE" firstAttribute="width" secondItem="D66-wZ-JP4" secondAttribute="width" id="DQi-5h-r6B"/>
                                 <constraint firstItem="Hnr-14-3JE" firstAttribute="centerY" secondItem="D66-wZ-JP4" secondAttribute="centerY" id="Qii-R5-LPB"/>
                                 <constraint firstItem="Hnr-14-3JE" firstAttribute="centerX" secondItem="D66-wZ-JP4" secondAttribute="centerX" id="YsC-FG-gXT"/>
                                 <constraint firstAttribute="width" secondItem="D66-wZ-JP4" secondAttribute="height" id="fff-aW-NMQ"/>
+                                <constraint firstAttribute="width" constant="80" id="vbM-uo-Tr7"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search String" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LF0-M7-nxN">
-                            <rect key="frame" x="101" y="55" width="157" height="21.5"/>
+                            <rect key="frame" x="101" y="55" width="148" height="21.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -161,7 +163,6 @@
                         <constraint firstItem="zXd-sd-aOs" firstAttribute="leading" secondItem="wve-LZ-QYh" secondAttribute="leading" id="V5V-YY-c3W"/>
                         <constraint firstItem="pv4-zc-lCd" firstAttribute="leading" secondItem="LF0-M7-nxN" secondAttribute="leading" id="Zgg-n7-VZE"/>
                         <constraint firstItem="LF0-M7-nxN" firstAttribute="leading" secondItem="Xla-iS-mj4" secondAttribute="trailing" constant="10" id="ZuH-8A-TNo"/>
-                        <constraint firstItem="D66-wZ-JP4" firstAttribute="width" secondItem="Xla-iS-mj4" secondAttribute="width" id="aai-DU-khK"/>
                         <constraint firstItem="eyU-Ir-i3D" firstAttribute="centerX" secondItem="Oc7-TZ-1Ag" secondAttribute="centerX" id="d9r-ja-WHE"/>
                         <constraint firstItem="Oc7-TZ-1Ag" firstAttribute="height" secondItem="OEM-K2-Lb5" secondAttribute="height" id="ecR-5D-Z8l"/>
                         <constraint firstItem="OEM-K2-Lb5" firstAttribute="width" secondItem="zXd-sd-aOs" secondAttribute="width" id="efl-sZ-tnp"/>

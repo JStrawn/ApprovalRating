@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="containerView" destination="AeY-qJ-pis" id="m5V-TZ-yI1"/>
+                <outlet property="loadingView" destination="YDa-Ye-dkk" id="2YK-P3-obL"/>
                 <outlet property="nameInputTextField" destination="9ZU-hQ-iDG" id="o4U-SL-5TC"/>
                 <outlet property="submitButton" destination="gDd-Jy-eQa" id="0cH-Ps-qma"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -95,6 +96,31 @@
                         <constraint firstItem="Sbo-ff-1y7" firstAttribute="top" secondItem="S92-49-DsC" secondAttribute="bottom" constant="10" id="zAx-Xy-czC"/>
                     </constraints>
                 </view>
+                <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDa-Ye-dkk">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROCESSING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5x-k7-pMJ">
+                            <rect key="frame" x="145" y="325.5" width="86.5" height="16"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading_icon" translatesAutoresizingMaskIntoConstraints="NO" id="DiH-Is-ARD">
+                            <rect key="frame" x="153" y="250.5" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="Nhy-Ek-zpP"/>
+                                <constraint firstAttribute="width" constant="70" id="Vje-m7-kxD"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="j5x-k7-pMJ" firstAttribute="centerY" secondItem="YDa-Ye-dkk" secondAttribute="centerY" id="60e-Ab-J7U"/>
+                        <constraint firstItem="DiH-Is-ARD" firstAttribute="centerX" secondItem="j5x-k7-pMJ" secondAttribute="centerX" id="n2A-je-Zi5"/>
+                        <constraint firstItem="j5x-k7-pMJ" firstAttribute="centerX" secondItem="YDa-Ye-dkk" secondAttribute="centerX" id="oy0-nJ-iJN"/>
+                        <constraint firstItem="j5x-k7-pMJ" firstAttribute="top" secondItem="DiH-Is-ARD" secondAttribute="bottom" constant="5" id="xaJ-4i-USY"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bme-LW-Pji">
                     <rect key="frame" x="209" y="607" width="128" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -106,12 +132,28 @@
                         <action selector="resultLauncher:" destination="-1" eventType="touchUpInside" id="7sq-ee-PFZ"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5co-6N-tzd">
+                    <rect key="frame" x="0.0" y="637" width="129" height="30"/>
+                    <color key="backgroundColor" red="0.49803921569999998" green="0.70588235290000001" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Test Loading">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="triggerLoadingView:" destination="-1" eventType="touchUpInside" id="yBB-Gs-59Q"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="AeY-qJ-pis" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="8xC-SY-C7j"/>
+                <constraint firstItem="YDa-Ye-dkk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="JJt-dx-eW1"/>
+                <constraint firstItem="YDa-Ye-dkk" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="JsU-MG-rfa"/>
                 <constraint firstAttribute="bottom" secondItem="AeY-qJ-pis" secondAttribute="bottom" constant="80" id="LNP-NC-kph"/>
+                <constraint firstAttribute="bottom" secondItem="5co-6N-tzd" secondAttribute="bottom" id="LcY-pQ-oSi"/>
                 <constraint firstItem="AeY-qJ-pis" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="130" id="NuV-5k-Gak"/>
+                <constraint firstItem="YDa-Ye-dkk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tyh-SJ-c91"/>
+                <constraint firstItem="5co-6N-tzd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fg1-Ol-9rV"/>
+                <constraint firstItem="YDa-Ye-dkk" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="qMj-79-j7Q"/>
                 <constraint firstAttribute="trailing" secondItem="AeY-qJ-pis" secondAttribute="trailing" constant="30" id="zOq-Db-daY"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="106.5"/>
@@ -119,5 +161,6 @@
     </objects>
     <resources>
         <image name="hero" width="234" height="235"/>
+        <image name="loading_icon" width="100" height="100"/>
     </resources>
 </document>

@@ -24,8 +24,11 @@ alpha:1.0]
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet UITextField *nameInputTextField;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
 
 - (IBAction)submitButtonPrsd:(id)sender;
 - (IBAction)resultLauncher:(id)sender;
+- (IBAction)triggerLoadingView:(id)sender;
+
 
 @end
