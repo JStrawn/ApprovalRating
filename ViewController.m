@@ -93,4 +93,10 @@
 
 - (IBAction)submitButtonPrsd:(id)sender {
 }
+
+- (IBAction)resultLauncher:(id)sender {
+    ResultController *resultController = [[ResultController alloc] init];
+    [self presentViewController:resultController animated:YES completion:nil];
+}
+
 @end

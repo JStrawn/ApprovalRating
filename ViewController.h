@@ -9,6 +9,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "ResultController.h"
 #import "DAO.h"
 
 #define UIColorFromRGB(rgbValue) \
@@ -25,5 +26,6 @@ alpha:1.0]
 @property (weak, nonatomic) IBOutlet UITextField *nameInputTextField;
 
 - (IBAction)submitButtonPrsd:(id)sender;
+- (IBAction)resultLauncher:(id)sender;
 
 @end
