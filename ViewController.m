@@ -74,7 +74,21 @@
     //register for download finished notification
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedNotification:)
-                                                 name:@"Download Finished"
+                                                 name:@"Positive Finished"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"Negative Finished"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"Neutral Finished"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"News Finished"
                                                object:nil];
     
     //register for keyboard notifications
@@ -110,13 +124,20 @@
 -(void)receivedNotification:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:@"Positive Finished"]) {
-        self.pos
-    }
+        posCompletion = YES;
+    } if ([[notification name] isEqualToString:@"Negative Finished"]) {
+        negCompletion = YES;
+    } if ([[notification name] isEqualToString:@"Neutral Finished"]) {
+        neuCompletion = YES;
+    } if ([[notification name] isEqualToString:@"News Finished"])
+        newsDownload = YES;
+    
+    [self checkDLCompletion];
 }
 
 -(void)checkDLCompletion {
-    if (negCompletion && neuCompletion && posCompletion && newsDownload) {
-        //execute results VD
+    if (negCompletion == YES && neuCompletion == YES && posCompletion == YES && newsDownload == YES) {
+        [self resultLauncher:self];
     }
 }
 

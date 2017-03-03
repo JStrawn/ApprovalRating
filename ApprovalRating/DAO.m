@@ -131,15 +131,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Neutral Finished" object:self];
 
         }
-            
-        //[self.delegate didRetreiveInfo:data];
-        // NSNotification broadcast here
-        //how to bring this back to the main queue
-        //[[NSNotificationCenter defaultCenter] postNotificationName:@"Download Finished" object:self];
-
-            
-        //});
-
+        
     }];
     [dataTask resume];
 }
@@ -177,6 +169,9 @@
             
             
             [self.newsStories addObject:currentStory];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"News Finished" object:self];
+
         }
         
     }];
