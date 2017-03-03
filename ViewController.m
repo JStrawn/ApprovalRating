@@ -54,6 +54,7 @@
     self.dao = [[DAO alloc]init];
     
     
+    
     // Gradient background view
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
@@ -102,7 +103,6 @@
     ResultController *resultController = [[ResultController alloc] init];
     [self presentViewController:resultController animated:YES completion:nil];
 }
-
 - (IBAction)triggerLoadingView:(id)sender {
     if (self.loadingView.hidden) {
         [UIView beginAnimations:nil context:NULL];
@@ -116,8 +116,22 @@
         [self.loadingView setAlpha:0];
         [UIView commitAnimations];
         self.loadingView.hidden = !self.loadingView.hidden;
+        self.loadingView.hidden = !self.loadingView.hidden;
     }
+    return YES;
+}
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.nameInputTextField) {
+        [textField resignFirstResponder];
+        [self dismissKeyboard];
+        return NO;
+    }
+    return YES;
+}
+
+-(void)dismissKeyboard {
+    [self.view endEditing:YES];
 }
 
 @end
