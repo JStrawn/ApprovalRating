@@ -20,7 +20,7 @@ alpha:1.0]
 
 @interface ViewController : UIViewController
 
-//@property (weak, nonatomic) DAO *dao;
+@property (weak, nonatomic) DAO *dao;
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
