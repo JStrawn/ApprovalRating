@@ -9,7 +9,9 @@
 #import "ViewController.h"
 //#import "DAO.h"
 
-@interface ViewController () <UITextFieldDelegate>
+@interface ViewController () <UITextFieldDelegate> {
+    CGRect textFrame;
+}
 
 @property double postiveScore;
 @property double negativeScore;
@@ -44,6 +46,9 @@
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:infoButtonView];
 
     self.nameInputTextField.delegate = self;
+#pragma mark PLACEHOLDER, comment out for real searching
+    self.nameInputTextField.text = @"Bernie Sanders";
+    
     self.navigationItem.leftBarButtonItem= infoButton;
     
     // submit button
@@ -65,10 +70,28 @@
     
     ///////////////////////////////////////////////////////////////////////////
     //
-    // DAO Init & Testing
+    // DAO Init, Testing, & Keyboard
     //
     ///////////////////////////////////////////////////////////////////////////
     self.dao = [[DAO alloc]init];
+    
+    //register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                           action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+
+    self.nameInputTextField.translatesAutoresizingMaskIntoConstraints = YES;
+
 
 }
 
@@ -96,7 +119,8 @@
     [self.dao getNeutralSentimentValues];
     [self.dao getNewsStories];
     
-
+    [self resultLauncher:self];
+    
 }
 
 - (IBAction)resultLauncher:(id)sender {
@@ -133,5 +157,27 @@
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
 }
+
+- (void)keyboardDidShow: (NSNotification *) notif{
+    
+    textFrame = self.nameInputTextField.frame;
+    
+    [self.nameInputTextField setFrame:CGRectMake(
+                                                 textFrame.origin.x,
+                                                 textFrame.origin.y-125,
+                                                 textFrame.size.width,
+                                                 textFrame.size.height)];
+
+
+}
+
+- (void)keyboardDidHide: (NSNotification *) notif{
+
+
+    self.nameInputTextField.frame = textFrame;
+ 
+
+}
+
 
 @end

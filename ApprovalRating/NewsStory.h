@@ -13,9 +13,10 @@
 @property (strong, nonatomic)NSString *newsTitle;
 @property (strong, nonatomic)NSString *url;
 @property (strong, nonatomic)NSString *imageURL;
+@property (strong, nonatomic)NSString *source;
 @property double score;
 
-- (instancetype)initWithTitle:(NSString*)Title andURL:(NSString*)URL andImageURL:(NSString*)imageURL;
+- (instancetype)initWithTitle:(NSString*)Title andURL:(NSString*)URL andImageURL:(NSString*)imageURL andSource:(NSString*)site;
 
 
 @end
