@@ -113,6 +113,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     self.firstTimeCalled = YES;
+    //[self triggerLoadingView:self];
 }
 
 
