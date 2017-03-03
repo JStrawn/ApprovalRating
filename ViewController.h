@@ -20,6 +20,9 @@ alpha:1.0]
 @interface ViewController : UIViewController
 
 @property (strong, nonatomic) DAO *dao;
+@property (strong, nonatomic) NSString* noSpacesUserSearchString;
+@property (strong, nonatomic) NSString* fixedUserSearchString;
+
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;

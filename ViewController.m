@@ -53,11 +53,6 @@
     
     self.dao = [[DAO alloc]init];
     
-    [self.dao getPositiveSentimentValues];
-    [self.dao getNegativeSentimentValues];
-    [self.dao getNeutralSentimentValues];
-    [self.dao getNewsStories];
-    
     
     // Gradient view
     CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -92,6 +87,9 @@
 - (IBAction)submitButtonPrsd:(id)sender {
     
     self.dao.userSearchString = self.nameInputTextField.text;
+    self.dao.noSpacesUserSearchString = [self.dao.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    self.dao.fixedUserSearchString = [self.dao.noSpacesUserSearchString stringByAppendingString:@"%20"];
+    
     [self.dao getPositiveSentimentValues];
     [self.dao getNegativeSentimentValues];
     [self.dao getNeutralSentimentValues];
@@ -108,6 +106,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.nameInputTextField) {
         [textField resignFirstResponder];
+        [self dismissKeyboard];
         return NO;
     }
     return YES;
