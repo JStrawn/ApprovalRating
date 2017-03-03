@@ -150,7 +150,6 @@
 
 - (void) dataRequestForNewsStories:(NSString*)urlString {
     
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
@@ -163,6 +162,9 @@
         // NSLog(@"Dictionary: %@", dictionary);
         
         //for in loop
+        
+        self.newsStories = [[NSMutableArray alloc]init];
+        
         NSDictionary *posts = [dictionary objectForKey:@"posts"];
         //NSDictionary *thread = [posts objectForKey:@"thread"];
         for (NSDictionary *currentThread in posts) {
@@ -171,7 +173,6 @@
             NSString *imageURL = [currentThread objectForKey:@"main_image"];
             NSString *source = [currentThread objectForKey:@"site"];
             
-            self.newsStories = [[NSMutableArray alloc]init];
             NewsStory *currentStory = [[NewsStory alloc]initWithTitle:title andURL:url andImageURL:imageURL andSource:source];
             NSString *performanceScore = [currentThread objectForKey:@"performance_score"];
             double performanceDouble = performanceScore.doubleValue;
@@ -182,13 +183,12 @@
             
             [self.newsStories addObject:currentStory];
             
-            
 
         }
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"News Finished" object:self];
     }];
     [dataTask resume];
-    });
     
 }
 
