@@ -9,6 +9,7 @@
 #import "DAO.h"
 #import "AppDelegate.h"
 #import "NewsStory.h"
+#import "ResultController.h"
 
 @interface DAO () <NSURLSessionDownloadDelegate>
 
@@ -118,10 +119,8 @@
 
         //convert data into array
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            NSLog(@"%@", dictionary);
-        NSDictionary *posts = [dictionary objectForKey:@"posts"];
-        NSDictionary *thread = [posts objectForKey:@"thread"];
-        NSNumber *numOfStories = [posts objectForKey:@"totalResults"];
+
+        NSNumber *numOfStories = [dictionary objectForKey:@"totalResults"];
         self.numberOfStories = [numOfStories doubleValue];
         
         if (sentimentType == 0) {
@@ -171,6 +170,10 @@
             NSString *performanceScore = [currentThread objectForKey:@"performance_score"];
             double performanceDouble = performanceScore.doubleValue;
             currentStory.score = performanceDouble;
+            
+            ResultController *rc = [[ResultController alloc]init];
+            
+            
             [self.newsStories addObject:currentStory];
         }
         
