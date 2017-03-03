@@ -9,7 +9,7 @@
 #import "ViewController.h"
 //#import "DAO.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
 @property double postiveScore;
 @property double negativeScore;
@@ -43,7 +43,7 @@
     infoButtonView.frame = CGRectMake(0, 0, 20, 20);
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:infoButtonView];
 
-    
+    self.nameInputTextField.delegate = self;
     self.navigationItem.leftBarButtonItem= infoButton;
     
     // submit button
@@ -64,21 +64,13 @@
     //
     ///////////////////////////////////////////////////////////////////////////
     self.dao = [[DAO alloc]init];
-    
-    // testing
-    [self.dao getPositiveSentimentValues];
-    [self.dao getNegativeSentimentValues];
-    [self.dao getNeutralSentimentValues];
-    [self.dao getNewsStories];
-    
-    NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
 
 }
 
 -(void)apiCallComplete:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:@"Address Found"]) {
-        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
+//        NSLog(@"pos %d, neg %d, neu %d", self.dao.positiveSentimentValue, self.dao.negativeSentimentValue, self.dao.neutralSentimentValue);
     }
 }
 
@@ -86,11 +78,29 @@
 - (IBAction)submitButtonPrsd:(id)sender {
     
     self.dao.userSearchString = self.nameInputTextField.text;
+    [self.dao getPositiveSentimentValues];
+    [self.dao getNegativeSentimentValues];
+    [self.dao getNeutralSentimentValues];
+    [self.dao getNewsStories];
+    
+
 }
 
 - (IBAction)resultLauncher:(id)sender {
     ResultController *resultController = [[ResultController alloc] init];
     [self presentViewController:resultController animated:YES completion:nil];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.nameInputTextField) {
+        [textField resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+-(void)dismissKeyboard {
+    [self.view endEditing:YES];
 }
 
 @end

@@ -28,5 +28,6 @@ alpha:1.0]
 
 - (IBAction)submitButtonPrsd:(id)sender;
 - (IBAction)resultLauncher:(id)sender;
+- (void)dismissKeyboard;
 
 @end
