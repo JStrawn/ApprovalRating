@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Initializing daoData
-    self.daoData = [[DAO alloc]init];
+    self.sharedManager = [DAO sharedManager];
     
     ///////////////////////////////////////////////////////////////////////////
     //
@@ -49,23 +49,23 @@
 }
 
 -(void)talliedSentimentResults {
-    self.postiveScoreResult.text = [NSString stringWithFormat:@"%d", self.daoData.positiveSentimentValue];
-    self.neutralScoreResult.text = [NSString stringWithFormat:@"%d", self.daoData.neutralSentimentValue];
-    self.negativeScoreResult.text = [NSString stringWithFormat:@"%d", self.daoData.negativeSentimentValue];
+    self.posScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.positiveSentimentValue];
+    self.neuScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.neutralSentimentValue];
+    self.negScoreLabel.text = [NSString stringWithFormat:@"%d", self.sharedManager.negativeSentimentValue];
 }
 
 -(void)approvalRatingCalculated {
     
-    double totalresults = self.daoData.positiveSentimentValue + self.daoData.neutralSentimentValue + self.daoData.negativeSentimentValue;
+    double totalresults = self.sharedManager.positiveSentimentValue + self.sharedManager.neutralSentimentValue + self.sharedManager.negativeSentimentValue;
     
-    double calculatedPercentage = self.daoData.positiveSentimentValue/totalresults;
+    double calculatedPercentage = self.sharedManager.positiveSentimentValue/totalresults;
     
     self.approvalRatingResult.text = [NSString stringWithFormat:@"%f",calculatedPercentage];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.daoData.newsStories.count;
+    return self.sharedManager.newsStories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -79,21 +79,6 @@
     cell.textLabel.text = @"This is a test";
     return cell;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 //Outlets will begin here//
 

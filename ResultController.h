@@ -17,7 +17,7 @@ alpha:1.0]
 
 @interface ResultController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (retain, nonatomic) DAO *daoData;
+@property (retain, nonatomic) DAO *sharedManager;
 
 @property (strong, nonatomic) IBOutlet UIView *resultContainerView;
 @property (weak, nonatomic) IBOutlet UIView *scoreBackgroundView;
