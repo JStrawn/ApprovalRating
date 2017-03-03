@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Initializing daoData
-    self.daoData = [[DAO alloc]init];
+    self.sharedManager = [DAO sharedManager];
     
     ///////////////////////////////////////////////////////////////////////////
     //
@@ -49,9 +49,9 @@
 }
 
 -(void)talliedSentimentResults {
-    self.postiveScoreResult.text = [NSString stringWithFormat:@"%d", self.daoData.positiveSentimentValue];
-    self.neutralScoreResult.text = [NSString stringWithFormat:@"%d", self.daoData.neutralSentimentValue];
-    self.negativeScoreResult.text = [NSString stringWithFormat:@"%d", self.daoData.negativeSentimentValue];
+    self.posScoreLabel.text = [NSString stringWithFormat:@"%d", self.daoData.positiveSentimentValue];
+    self.neuScoreLabel.text = [NSString stringWithFormat:@"%d", self.daoData.neutralSentimentValue];
+    self.negScoreLabel.text = [NSString stringWithFormat:@"%d", self.daoData.negativeSentimentValue];
 }
 
 -(void)approvalRatingCalculated {
