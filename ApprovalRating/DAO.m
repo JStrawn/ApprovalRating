@@ -105,7 +105,7 @@
     [urlString appendString:self.fixedUserSearchString];
     [urlString appendString:@"person%3A%22"];
     [urlString appendString:self.noSpacesUserSearchString];
-    [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
+    [urlString appendString:@"%22%20(site_type%3Anews)&sort=performance_score"];
 
     [self dataRequestForNewsStories:urlString];
     

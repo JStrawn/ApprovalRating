@@ -8,8 +8,11 @@
 
 #import "ResultController.h"
 #import "CustomCell.h"
+//#import "WebViewController.h"
+#import <SafariServices/SafariServices.h>
 
-@interface ResultController ()
+
+@interface ResultController () <SFSafariViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *postiveScoreResult;
 @property (weak, nonatomic) IBOutlet UILabel *neutralScoreResult;
 @property (weak, nonatomic) IBOutlet UILabel *negativeScoreResult;
@@ -79,12 +82,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-    
     static NSString *CellIdentifier = @"Cell";
     
     CustomCell *cell = (CustomCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -102,9 +99,26 @@
     UIImage *newsImage = [self getImageFromURL:self.currentNewsStory.imageURL withTableViewCell:cell];
     cell.newsImageView.image = newsImage;
     
+    
     return cell;
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    NSURL *url = [[NSURL alloc]initWithString:self.currentNewsStory.url];
+    
+    SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:url];
+    svc.delegate = self;
+    [self presentViewController:svc animated:YES completion:nil];
+    
+    
+}
+
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    //do nothing
+}
 
 
 //Outlets will begin here//
@@ -113,10 +127,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+//Method to retrive article image
 -(UIImage *) getImageFromURL:(NSString *)fileURL withTableViewCell:(CustomCell*)cell{
     
     dispatch_queue_t concurrentQueue =
     dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
     
     // Declare your local data outside the block.
     // `__block` specifies that the variable can be modified from within the block.

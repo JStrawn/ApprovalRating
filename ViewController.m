@@ -42,6 +42,7 @@
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:infoButtonView];
     
     self.nameInputTextField.delegate = self;
+    
 #pragma mark PLACEHOLDER, comment out for real searching
     self.nameInputTextField.text = @"Bernie Sanders";
     // self.nameInputTextField.text = self.sharedManager.userSearchString;
@@ -51,7 +52,6 @@
     // submit button
     self.submitButton.backgroundColor = UIColorFromRGB(0x6da7d3);
     self.submitButton.layer.cornerRadius = 5;
-    
     
     self.sharedManager = [DAO sharedManager];
     
@@ -170,12 +170,12 @@
     [self triggerLoadingView:self];
 }
 
-//This is to test the push to the resultViewController//
-- (void)resultLauncher {
-    ResultController *resultController = [[ResultController alloc] init];
-    // resultController.posScoreLabel.text = [NSString stringWithFormat:@"%d",self.dao.positiveSentimentValue];
-    [self presentViewController:resultController animated:YES completion:nil];
-}
+////This is to test the push to the resultViewController//
+//- (void)resultLauncher {
+//    ResultController *resultController = [[ResultController alloc] init];
+//    // resultController.posScoreLabel.text = [NSString stringWithFormat:@"%d",self.dao.positiveSentimentValue];
+//    [self presentViewController:resultController animated:YES completion:nil];
+//}
 //This is to test the 'loadingView'//
 - (IBAction)triggerLoadingView:(id)sender {
     if (self.loadingView.hidden) {
