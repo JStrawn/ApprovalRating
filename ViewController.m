@@ -44,7 +44,7 @@
     self.nameInputTextField.delegate = self;
     
 #pragma mark PLACEHOLDER, comment out for real searching
-    self.nameInputTextField.text = @"Bernie Sanders";
+    //self.nameInputTextField.text = @"Bernie Sanders";
     // self.nameInputTextField.text = self.sharedManager.userSearchString;
     
     self.navigationItem.leftBarButtonItem= infoButton;
@@ -57,7 +57,7 @@
     
     self.sharedManager.userSearchString = [[NSMutableString alloc]init];
     self.sharedManager.noSpacesUserSearchString = [self.sharedManager.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    self.sharedManager.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%20"];
+    //self.sharedManager.fixedUserSearchString = [self.noSpacesUserSearchString stringByAppendingString:@"%22"];
     
     
     // Gradient background view
@@ -177,6 +177,7 @@
 //    [self presentViewController:resultController animated:YES completion:nil];
 //}
 //This is to test the 'loadingView'//
+
 - (IBAction)triggerLoadingView:(id)sender {
     if (self.loadingView.hidden) {
         [UIView beginAnimations:nil context:NULL];

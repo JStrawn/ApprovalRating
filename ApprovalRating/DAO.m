@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "NewsStory.h"
 #import "ResultController.h"
+#import "ViewController.h"
 
 @interface DAO ()
 
@@ -29,14 +30,13 @@
 
 
 - (id)init {
+    
     self = [super init];
     
-    self.myAPIToken = @"bdfe913e-d37f-4f75-83a5-3c41b7443483";
+    self.myAPIToken = @"69a67756-7109-4559-b2c0-9784eec41c5c";
     
-#pragma mark This is a dummy request, comment out line 26 when using user generated search
-    //self.userSearchString = @"Bernie Sanders";
-    //self.userSearchString = self.vc.nameInputTextField.text;
-
+    ViewController *vc = [[ViewController alloc]init];
+    self.userSearchString = vc.nameInputTextField.text;
 
     return self;
 }
@@ -44,55 +44,37 @@
 
 - (void)getPositiveSentimentValues {
     
-    NSMutableString *urlString = [[NSMutableString alloc]init];
-
-    //create the url string
-    [urlString appendString:@"http://webhose.io/search?token="];
-    [urlString appendString:self.myAPIToken];
-    [urlString appendString:@"&format=json&q="];
-    [urlString appendString:self.fixedUserSearchString];
-    [urlString appendString:@"person.positive%3A%22"];
-    [urlString appendString:self.noSpacesUserSearchString];
-    [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
+    
+    NSString *urlString = [NSString stringWithFormat:
+                           @"http://webhose.io/search?token=%@&format=json&q=person.positive%%3A%%22%@%%22&sort=performance_score",
+                           self.myAPIToken, self.noSpacesUserSearchString];
     
     [self dataRequestForSentiments:urlString sentType:POSITIVE];
         
 }
 
+
 - (void)getNegativeSentimentValues {
     
-    NSMutableString *urlString = [[NSMutableString alloc]init];
-
-    
-    //create the url string
-    [urlString appendString:@"http://webhose.io/search?token="];
-    [urlString appendString:self.myAPIToken];
-    [urlString appendString:@"&format=json&q="];
-    [urlString appendString:self.fixedUserSearchString];
-    [urlString appendString:@"person.negative%3A%22"];
-    [urlString appendString:self.noSpacesUserSearchString];
-    [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
+    NSString *urlString = [NSString stringWithFormat:
+                           @"http://webhose.io/search?token=%@&format=json&q=person.negative%%3A%%22%@%%22&sort=performance_score",
+                           self.myAPIToken, self.noSpacesUserSearchString];
     
     [self dataRequestForSentiments:urlString sentType:NEGATIVE];
     
 }
 
+
 - (void)getNeutralSentimentValues {
     
-    NSMutableString *urlString = [[NSMutableString alloc]init];
-    
-    //create the url string
-    [urlString appendString:@"http://webhose.io/search?token="];
-    [urlString appendString:self.myAPIToken];
-    [urlString appendString:@"&format=json&q="];
-    [urlString appendString:self.fixedUserSearchString];
-    [urlString appendString:@"person.neutral%3A%22"];
-    [urlString appendString:self.noSpacesUserSearchString];
-    [urlString appendString:@"%22%20(site_type%3Anews%20OR%20site_type%3Ablogs)"];
+    NSString *urlString = [NSString stringWithFormat:
+                           @"http://webhose.io/search?token=%@&format=json&q=person.neutral%%3A%%22%@%%22&sort=performance_score",
+                           self.myAPIToken, self.noSpacesUserSearchString];
     
     [self dataRequestForSentiments:urlString sentType:NEUTRAL];
     
 }
+
 
 -(void)getNewsStories {
     
@@ -102,10 +84,9 @@
     [urlString appendString:@"http://webhose.io/search?token="];
     [urlString appendString:self.myAPIToken];
     [urlString appendString:@"&format=json&q="];
-    [urlString appendString:self.fixedUserSearchString];
     [urlString appendString:@"person%3A%22"];
     [urlString appendString:self.noSpacesUserSearchString];
-    [urlString appendString:@"%22%20(site_type%3Anews)&sort=performance_score"];
+    [urlString appendString:@"%22%20(site_type%3Anews)&sort=relevancy"];
 
     [self dataRequestForNewsStories:urlString];
     
@@ -116,6 +97,7 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     NSURL *url = [NSURL URLWithString:urlString];
+    NSLog(@"@%@", urlString);
     NSMutableURLRequest *request =[[NSMutableURLRequest alloc]initWithURL:url];
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
