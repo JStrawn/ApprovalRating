@@ -1,6 +1,6 @@
 # APRVD
 
-<center><div style="text-align:center"><img src ="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/app_icon.png" /></div></center>
+<div align="center"><img src ="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/app_icon.png" /></div>
 
 Created for a news & politics themed hackathon, APRVD was inspired by a strong interest in data trends and the media's general attitudes towards public figures. The user searches for a celebrity or politician and receives the subject's "approval rating" over a set amount of time, along with recent articles this person has been mentioned in. 
 
