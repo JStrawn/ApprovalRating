@@ -33,7 +33,7 @@
 - (id)init {
     
     self = [super init];
-    self.myAPIToken = @"bdfe913e-d37f-4f75-83a5-3c41b7443483";
+    self.myAPIToken = @"PASTE YOUR API TOKEN HERE";
     
     ViewController *vc = [[ViewController alloc]init];
     self.userSearchString = vc.nameInputTextField.text;
