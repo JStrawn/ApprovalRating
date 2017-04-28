@@ -1,6 +1,6 @@
 # APRVD
 
-<center>![APRVD](https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/app_icon.png)</center>
+<div style="text-align:center"><img src ="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/app_icon.png)" /></div>
 
 Created for a news & politics themed hackathon, APRVD was inspired by a strong interest in data trends and the media's general attitudes towards public figures. The user searches for a celebrity or politician and receives the subject's "approval rating" over a set amount of time, along with recent articles this person has been mentioned in. 
 
@@ -8,10 +8,11 @@ When the user types in the person's name, the app makes four API calls. The firs
 
 After the hackathon, I fixed several bugs and added some new features, like the custom table cells, images, and ability to open news articles in Safari. There are still a vew visual bugs, and there were planned features like allowing the user to shorten the default 3-day timeframe of search results. However, I ultimately decided to stop working on this project due to a problem that I *totally* should have seen coming: the internet is a very negative place, and no matter who you search for, approval ratings rarely go above 3%. Oh well, hindsight is 20/20.
 
-![APRVD](https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1352.PNG =750x1334)
 
-<img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1352.PNG " height="1134" width="750">
+<img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1352.PNG" height="1000" width="562">
 
-![APRVD](https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1478.PNG =750x1334)
-![APRVD](https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1480.PNG =750x1334)
-![APRVD](https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1477.PNG =750x1334)
+<img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1478.PNG" height="1000" width="562">
+
+<img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1480.PNG" height="1000" width="562">
+
+<img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1477.PNG" height="1000" width="562">
