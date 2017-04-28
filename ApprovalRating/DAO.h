@@ -30,12 +30,6 @@
 @property int negativeSentimentValue;
 @property int neutralSentimentValue;
 
-typedef enum {
-        POSITIVE,
-        NEGATIVE, 
-        NEUTRAL
-
-} sentimentType;
 
 @property int numberOfStories;
 
@@ -45,7 +39,6 @@ typedef enum {
 - (void)getNewsStories;
 
 
-- (void) dataRequestForSentiments:(NSString*)urlString sentType:(int)sentimentType;
 - (void) dataRequestForNewsStories:(NSString*)urlString;
 
 

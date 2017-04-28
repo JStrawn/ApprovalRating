@@ -1,0 +1,3 @@
+[submodule "WebhoseKit"]
+	path = WebhoseKit
+	url = https://github.com/Webhose/webhoseio-cocoa.git

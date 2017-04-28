@@ -36,6 +36,11 @@ alpha:1.0]
 @property (weak, nonatomic) IBOutlet UILabel *negScoreLabel;
 @property (weak, nonatomic) IBOutlet UIButton *dismissButton;
 
+// sentiment scores
+@property int positiveScore;
+@property int negativeScore;
+@property int neutralScore;
+
 // testing
 - (IBAction)dismissButtonPrsd:(id)sender;
 

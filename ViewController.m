@@ -10,12 +10,14 @@
 //#import "DAO.h"
 
 @interface ViewController () <UITextFieldDelegate> {
+   
     CGRect textFrame;
     
     bool posCompletion;
     bool neuCompletion;
     bool negCompletion;
     bool newsDownload;
+    
 }
 
 @end
@@ -147,6 +149,9 @@
 -(void)checkDLCompletion {
     if (negCompletion && neuCompletion && posCompletion && newsDownload) {
         ResultController *resultController = [[ResultController alloc] init];
+        resultController.positiveScore = self.sharedManager.positiveSentimentValue;
+        resultController.negativeScore = self.sharedManager.negativeSentimentValue;
+        resultController.neutralScore = self.sharedManager.neutralSentimentValue;
         [self presentViewController:resultController animated:YES completion:nil];
         //[self resultLauncher];
         // hide loading view if it's showing
@@ -162,21 +167,20 @@
     self.sharedManager.noSpacesUserSearchString = [self.sharedManager.userSearchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     self.sharedManager.fixedUserSearchString = [self.sharedManager.noSpacesUserSearchString stringByAppendingString:@"%20"];
     
+    [self triggerLoadingView:self];
+    
     [self.sharedManager getPositiveSentimentValues];
+    [NSThread sleepForTimeInterval:1.1f];
     [self.sharedManager getNegativeSentimentValues];
+    [NSThread sleepForTimeInterval:1.1f];
     [self.sharedManager getNeutralSentimentValues];
+    [NSThread sleepForTimeInterval:1.1f];
     [self.sharedManager getNewsStories];
     
-    [self triggerLoadingView:self];
 }
 
-////This is to test the push to the resultViewController//
-//- (void)resultLauncher {
-//    ResultController *resultController = [[ResultController alloc] init];
-//    // resultController.posScoreLabel.text = [NSString stringWithFormat:@"%d",self.dao.positiveSentimentValue];
-//    [self presentViewController:resultController animated:YES completion:nil];
-//}
-//This is to test the 'loadingView'//
+
+
 
 - (IBAction)triggerLoadingView:(id)sender {
     if (self.loadingView.hidden) {

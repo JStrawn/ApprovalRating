@@ -35,7 +35,6 @@ alpha:1.0]
 @property int timesCalled;
 
 - (IBAction)submitButtonPrsd:(id)sender;
-- (IBAction)resultLauncher:(id)sender;
 - (IBAction)triggerLoadingView:(id)sender;
 - (void)dismissKeyboard;
 

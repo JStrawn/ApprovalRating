@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A4EFF9D7BCD533662E10D33E57FBA8806C0F2845",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A4EFF9D7BCD533662E10D33E57FBA8806C0F2845" : 9223372036854775807,
+    "A1F805283C36AB72E7C13843CC5B8B8BC68411EB" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A21D82E9-2DCD-4E85-944D-138AA52F4141",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A4EFF9D7BCD533662E10D33E57FBA8806C0F2845" : "ApprovalRating\/",
+    "A1F805283C36AB72E7C13843CC5B8B8BC68411EB" : "ApprovalRating\/WebhoseKit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ApprovalRating",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ApprovalRating.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Webhose\/webhoseio-cocoa.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A1F805283C36AB72E7C13843CC5B8B8BC68411EB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JStrawn\/ApprovalRating.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A4EFF9D7BCD533662E10D33E57FBA8806C0F2845"
+    }
+  ]
+}
