@@ -12,5 +12,7 @@ After the hackathon, I fixed several bugs and added some new features, like the 
 # How To Use APRVD
 To use APRVD for yourself, simply clone the project. Before the app will work, you have to get an API key from [WebHose.io](https://webhose.io). It's free as long as you don't go over 1000 requests per month, and APRVD makes 4 requests per search. Paste your API key in 'Model/DAO.m'. Then, build and run the Xcode project on either a simulator or a phone.
 
+Please note that Webhose limits API calls to one per second, which affects loading times. 
+
 # Screenshots
 <div align="center"><img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1352.PNG" height="733" width="437">  <img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1478.PNG" height="733" width="437">  <img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1480.PNG" height="733" width="437">  <img src="https://github.com/JStrawn/ApprovalRating/blob/master/Docs/img/IMG_1477.PNG" height="733" width="437"></div>
